@@ -229,7 +229,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        switch (requestCode){
+        switch (resultCode){
             case RESULT_OK:
                 Bundle extras = data.getExtras();
                 AddressDetailBody address = (AddressDetailBody) extras.getSerializable("address");
