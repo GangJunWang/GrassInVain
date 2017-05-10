@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">徒然草</string>
+    <string name="mobile_is_wrong">请输入正确的手机号</string>
+    <string name="mobile_is_not_null">手机号不能为空</string>
+    <string name="password_is_not_null">密码不能为空</string>
+    <string name="twice_password_is_not_equals">两次输入的密码不一致，请修改后再试</string>
+    <string name="password_is_wrong">请输入6-15为数字和字母</string>
+    <string name="smscode_is_not_null">验证码不能为空</string>
+    <string name="smscode_length_is_wrong">验证码必须是4位</string>
+    <string name="nickname_is_not_null">昵称不能为空</string>
+    <string name="nickname_is_wrong">昵称只能12位由中文、字母或数字组成</string>
+</resources>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="1dp"
+    android:layout_alignTop="@+id/shoppingCart_bottom_menu"
+    android:background="#eee"/>
+    <LinearLayout
+        android:id="@+id/shoppingCart_bottom_menu"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_vertical">
+        <ImageView
+            android:id="@+id/shoppingCart_quanxuan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/weixuan"
+            android:layout_marginLeft="20dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="3dp"
+            android:text="全选"/>
+        <TextView
+            android:id="@+id/shoppingCart_zongji"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="合计："/>
+        <TextView
+            android:id="@+id/shoppingCart_rmb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="¥"/>
+        <TextView
+            android:id="@+id/shoppingCart_zongjia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:text="0.00"/>
+        <Button
+            android:id="@+id/shoppingCart_jiesuan"
+            android:layout_width="130dp"
+            android:layout_height="match_parent"
+            android:background="#80aa2a"
+            android:textColor="#fff"
+            android:textSize="14dp"
+            android:text="结算（0）"
+            />
+    </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/shoppingCart_recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="37dp"
+            android:layout_above="@+id/shoppingCart_bottom_menu"
+            >
+        </android.support.v7.widget.RecyclerView>
+
+</RelativeLayout>

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="zhuticolor">#80aa2a</color>
+    <color name="sendyanzhegnma">#00673a</color>
+    <color name="write">#fff</color>
+    <color name="black">#000</color>
+
+    <!--
+    -->
+
+    <color name="background_tab_pressed">#6633B5E5</color>
+    <!-- 主色调（theme——bg） -->
+    <color name="t_color">#303134</color>
+    <color name="t_color_deep">#303134</color>
+    <!--辅助色1（antenna——bg）-->
+    <color name="a1_color">#dfbe22</color>
+    <color name="a1_color_deep">#dfbe22</color>
+    <color name="project_color">#2B2D39</color>
+
+    <!-- 白色背景 -->
+    <color name="common_bg_color">#F3F5F7</color>
+    <!-- tab -->
+    <color name="tab_gray">#a9a9a9</color>
+    <color name="tab_blue">#dfbe22</color>
+    <!--自定义dialog-->
+    <!--<color name="dialog_bg_color">#1d1d1e</color>-->
+    <!--<color name="dialog_stroke_color">#000000</color>-->
+    <!--<color name="dialog_text_color">#F3F5F7</color>-->
+    <color name="dialog_bg_color">#F3F5F7</color>
+    <color name="dialog_stroke_color">#999999</color>
+    <color name="dialog_text_color">#7a7a7b</color>
+    <!--layout-->
+    <color name="layout_item_color">#303134</color>
+    <color name="layout_item_black_color">#1d1d1e</color>
+    <color name="grid_item_bg_color">#303134</color>
+    <!-- 分割线 -->
+    <color name="default_stroke_color">#37393d</color>
+    <color name="layout_stroke_color">#D0D0D0</color>
+    <!--申请按钮颜色-->
+    <color name="applyfor_merchant_btn_color">#6d89ca</color>
+    <color name="applyfor_favourite_btn_color">#d15075</color>
+    <color name="applyfor_superstar_btn_color">#caab6d</color>
+    <!-- 随机颜色 -->
+    <color name="ColorA">#33B5E5</color>
+    <color name="ColorB">#AA66CC</color>
+    <color name="ColorC">#99CC00</color>
+    <color name="ColorD">#FFBB33</color>
+    <color name="ColorE">#FF4444</color>
+    <!-- 绿色 -->
+    <color name="green_10">#7cbd14</color>
+    <!-- 灰色 -->
+    <color name="gray">#7a7a7b</color>
+    <color name="gray_04">#333333</color>
+    <color name="gray_06">#666666</color>
+    <color name="gray_08">#999999</color>
+    <color name="gray_10">#c2c2c2</color>
+    <color name="gray_12">#d9d9d9</color>
+    <color name="gray_14">#f3f5f7</color>
+    <color name="gray_16">#f9fbfc</color>
+    <color name="gray_14_trans">#ccf3f5f7</color>
+
+    <!-- 蓝色 -->
+    <color name="blue_04">#20a3ff</color>
+    <color name="blue_06">#dcf1ff</color>
+    <color name="blue_08">#2574ce</color>
+    <color name="blue_10">#2668c1</color>
+    <color name="blue_16">#4c98cd</color>
+
+    <color name="blue_04_trans">#cc20a3ff</color>
+    <color name="blue_16_trans">#cc4c98cd</color>
+
+    <!-- 橙色 -->
+    <color name="orange_08">#ff690e</color>
+    <!-- 白色 -->
+    <color name="white_06">#f7f7f7</color>
+    <color name="white_trans">#ccffffff</color>
+
+    <!-- 黑色 -->
+    <color name="black_04">#1a1d1f</color>
+    <color name="black_06">#8d8e8f</color>
+    <color name="black_12">#90979c</color>
+    <color name="black_14">#9fb1be</color>
+    <!-- 半透明黑色 -->
+    <color name="black_trans">#cc000000</color>
+    <color name="black_trans_1">#9f000000</color>
+    <color name="black_transparent">#00ffffff</color>
+    <!-- 公共弹出框背景颜色 -->
+    <color name="black_dialog_backgroud">#77000000</color>
+    <!-- 透明 -->
+    <!-- 半透明 (浮层效果) -->
+    <color name="translucence">#75000000</color>
+    <color name="translucence_gary">#65303134</color>
+
+
+    <!--<drawable name="grid_item_default">#ffffffff</drawable>-->
+    <drawable name="grid_item_pressed">#ffefefef</drawable>
+
+
+    <color name="tab_title_normal_color">#262726</color>
+    <color name="tab_title_pressed_color">#16982b</color>
+    <color name="tab_middle_line_color">#5c882c</color>
+    <color name="ksw_md_ripple_normal">#1E000000</color>
+    <color name="ksw_md_ripple_checked">#33019285</color>
+    <!--switchButton-->
+    <color name="ksw_md_solid_shadow">#33000000</color>
+    <color name="ksw_md_solid_normal">#ECECEC</color>
+    <color name="ksw_md_solid_checked">#019285</color>
+    <color name="ksw_md_solid_disable">#FFFFFF</color>
+    <color name="ksw_md_solid_checked_disable">#aaaaaa</color>
+
+    <color name="color_green_C2FF9A">#C2FF9A</color>
+    <color name="color_yellow_FAEC55">#faec55</color>
+    <color name="color_gray_666666">#666666</color>
+    <color name="color_gray_dfe2e6">#dfe2e6</color>
+    <color name="color_green_desc">#7e7034</color>
+    <color name="color_red_desc">#de5075</color>
+    <color name="color_red_pay">#ffff0000</color>
+    <color name="color_blue_74b9ff">#74b9ff</color>
+    <color name="color_blue_238efa">#238efa</color>
+    <color name="gift_background_color">#BF000000</color>
+
+    <color name="list_divider">#534f4d</color>
+    <color name="list_select">#238efa</color>
+
+</resources>

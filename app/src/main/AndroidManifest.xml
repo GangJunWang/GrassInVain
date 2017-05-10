@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="bluetooth.inuker.com.grassinvain">
+
+    <!-- 支持多种屏幕 -->
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:resizeable="true"
+        android:smallScreens="true" />
+
+    <!-- 网络相关 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <!-- 读写文件 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+
+    <!-- 多媒体 -->
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+
+    <application
+        android:name=".controller.MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".controller.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <!-- <activity android:name=".controller.MainActivity"/> -->
+        <activity android:name=".controller.login.LoginActivity" />
+        <activity android:name=".controller.login.RegisteredActivity" />
+        <activity android:name=".controller.SplashActivity" />
+        <activity android:name=".controller.login.ForgetPwdActivity" />
+        <activity android:name=".controller.personinformation.ChangePersonInformation" />
+        <!-- <activity android:name=".controller.TextActivity"></activity> -->
+        <activity android:name=".controller.activity.GoodsDetails" />
+        <!-- 选择图片 -->
+        <activity
+            android:name=".common.other.SelectPicActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyDialogActivity" />
+        <!-- 关于我们 -->
+        <activity android:name=".controller.activity.AboutUs" />
+        <!-- 系统设置 -->
+        <activity android:name=".controller.activity.SystemSetting" />
+        <!-- 意见反馈 -->
+        <activity android:name=".controller.activity.Feedback" />
+        <!--  -->
+        <activity android:name=".controller.activity.TheVerSon" />
+        <!--  -->
+        <activity android:name=".controller.activity.OrderPeocess" />
+        <!--  -->
+        <activity android:name=".controller.activity.WorkResult" />
+        <!-- 团队收益详情 -->
+        <activity android:name=".controller.activity.TeamYejiDetail" />
+        <!-- 收益详情 -->
+        <activity android:name=".controller.activity.ShouyiDetail" />
+        <!--  -->
+        <activity android:name=".controller.activity.TixianRecoder" />
+        <!-- 商品评价 -->
+        <activity android:name=".controller.activity.EvaluationGoods" />
+        <!-- 上传图片 -->
+        <activity android:name=".controller.activity.UpLoadFileActivity" />
+        <!-- 改变用户姓名 -->
+        <activity android:name=".controller.activity.personactivity.ChangeNameActivity" />
+        <!-- 改变用户性别 -->
+        <activity android:name=".controller.activity.personactivity.ChangeGenderActivity" />
+
+        <activity android:name=".controller.activity.Submitorder" />
+        <!-- 收货地址 -->
+        <activity android:name=".controller.personinformation.TheGoodsAddress" />
+        <!-- 编辑地址 -->
+        <activity android:name=".controller.activity.ChangeAddressimformation" />
+        <!-- 添加新地址 -->
+        <activity android:name=".controller.activity.AddNewAddressActivity" />
+        <!-- 提交订单 -->
+        <activity android:name=".controller.activity.OrderActivity" />
+        <!--银行卡信息-->
+        <activity android:name=".controller.activity.personactivity.UserBankActivity" />
+        <!--物流详情-->
+        <activity android:name=".controller.activity.personactivity.WuliuActivity"></activity>
+    </application>
+
+</manifest>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tab_banner_viewpager_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <bluetooth.inuker.com.grassinvain.common.widget.viewpager.LoopViewPager
+        android:id="@+id/tab_banner_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </bluetooth.inuker.com.grassinvain.common.widget.viewpager.LoopViewPager>
+
+    <bluetooth.inuker.com.grassinvain.common.widget.viewpager.CirclePageIndicator
+        android:id="@+id/tab_banner_viewpager_indicator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:padding="10dip"
+        android:visibility="visible" />
+
+
+</RelativeLayout>

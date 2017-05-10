@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_margin="5dp"
+    android:layout_height="250dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="2sp"
+        android:layout_alignParentTop="true"
+        android:background="#eee" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="2sp"
+        android:layout_alignParentBottom="true"
+        android:background="#eee" />
+
+    <TextView
+        android:layout_width="2sp"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:background="#eee"/>
+    <TextView
+        android:layout_width="2sp"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:background="#eee"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="left">
+            <TextView
+                android:id="@+id/product_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"
+                android:textColor="#666"
+                android:textSize="16dp"
+                android:gravity="left"
+                android:text="一 | 生 | 好 | 水" />
+        </LinearLayout>
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+            <ImageView
+                android:id="@+id/product_image"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:src="@mipmap/chanpin" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:id="@+id/big_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:background="#6000"
+                    android:visibility="invisible"
+                    android:gravity="center">
+                    <TextView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:background="@drawable/icon_back_blue"
+                        android:textColor="#fff"
+                        android:gravity="center"
+                        android:text="大瓶"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/small_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:background="#6000"
+                    android:visibility="invisible"
+                    android:gravity="center">
+                    <TextView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:background="@drawable/icon_back_blue"
+                        android:textColor="#fff"
+                        android:gravity="center"
+                        android:text="小瓶"/>
+                </LinearLayout>
+
+            </LinearLayout>
+        </FrameLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp">
+            <TextView
+                android:id="@+id/product_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/zhuticolor"
+                android:layout_marginLeft="22dp"
+                android:text="$ 388" />
+
+            <ImageView
+                android:id="@+id/join_shoping"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:src="@mipmap/chooseguige"
+                android:layout_marginRight="20dp"/>
+        </RelativeLayout>
+
+
+    </LinearLayout>
+</RelativeLayout>

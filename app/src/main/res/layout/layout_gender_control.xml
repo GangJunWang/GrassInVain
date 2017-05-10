@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingBottom="43dp"
+    android:paddingLeft="22.5dp"
+    android:paddingRight="22.5dp"
+    android:paddingTop="46dp">
+
+    <Button
+        android:id="@+id/btn_open_camera"
+        android:layout_width="fill_parent"
+        android:layout_height="42dip"
+        android:background="#fff"
+        android:gravity="center"
+        android:text="男"
+        android:textColor="#000"
+        android:textSize="18sp" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="#eee" />
+
+    <Button
+        android:id="@+id/btn_choose_img"
+        android:layout_width="fill_parent"
+        android:layout_height="42dip"
+        android:layout_marginTop="16dip"
+
+        android:background="#fff"
+        android:gravity="center"
+        android:text="女"
+        android:textColor="#000"
+        android:textSize="18sp" />
+</LinearLayout>

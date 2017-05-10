@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_feedback"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+
+        <LinearLayout
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/loginback" />
+        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="#000"
+            android:text="意见反馈" />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignBottom="@+id/write_yijian"
+        android:background="#999"
+        android:id="@+id/textView2" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="5dp"
+        android:layout_alignTop="@+id/textView2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="联系方式"
+            android:layout_margin="10dp"
+            android:textSize="14dp"
+            android:textColor="#000"
+            />
+
+        <bluetooth.inuker.com.grassinvain.common.widget.MyEditText
+            android:id="@+id/phone_munber"
+            android:layout_width="300dp"
+            android:textSize="13dp"
+            android:gravity="right|center"
+            android:background="@null"
+            android:textColorHint="#999"
+            android:inputType="phone"
+            android:layout_height="wrap_content"
+            android:hint="填写你的手机号             "
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+    </RelativeLayout>
+
+
+
+    <LinearLayout
+        android:id="@+id/submit_yijian"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/zhuticolor"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="提交意见"
+            android:textColor="#fff"
+            android:textSize="16dp" />
+    </LinearLayout>
+
+    <bluetooth.inuker.com.grassinvain.common.widget.MyEditText
+        android:id="@+id/write_yijian"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:textColorHint="#999"
+        android:textSize="12dp"
+        android:layout_margin="5dp"
+        android:inputType="text"
+        android:background="@null"
+        android:hint="        写下你的宝贵意见"
+        android:gravity="clip_horizontal"
+        android:layout_below="@+id/title_bar"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/title_bar"
+        android:background="#eee"/>
+
+
+</RelativeLayout>

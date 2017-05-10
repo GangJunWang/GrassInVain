@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/GrassInVain.iml" filepath="$PROJECT_DIR$/GrassInVain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pullrefresh/pullrefresh.iml" filepath="$PROJECT_DIR$/pullrefresh/pullrefresh.iml" />
+      <module fileurl="file://$PROJECT_DIR$/quickbase/quickbase.iml" filepath="$PROJECT_DIR$/quickbase/quickbase.iml" />
+    </modules>
+  </component>
+</project>

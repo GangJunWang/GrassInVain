@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <bluetooth.inuker.com.grassinvain.common.widget.MyTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14dp"
+        android:maxEms="26"
+        android:layout_marginTop="20dp"
+        android:textColor="#000"
+        android:text="         好享闲是佛果生技公司精心挑选猴头菇，香菇等多种上等天然食用菌，添加胡萝卜,乌梅等萃取精华，浓缩研制而成的独特食品，绝不含任何人工化学药物，富含人体必需氨基酸 ，维生素，矿物质，植物纤维等多种营养因子，品质精纯优异。好想闲所选食材皆有益于均衡机体日常所需的各种营养。" />
+</LinearLayout>

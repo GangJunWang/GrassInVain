@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_forget"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fffedc"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/login_relayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:id="@+id/forget_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:src="@mipmap/loginback" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text=""
+            android:textColor="#666"
+            android:textSize="22dp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="30dp"
+        android:background="@mipmap/forgetpwdback">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="90dp"
+                android:text="密码重置"
+                android:textColor="#333"
+                android:textSize="14dp"
+               />
+
+            <bluetooth.inuker.com.grassinvain.common.widget.MyEditText
+                android:id="@+id/forget_phonenumber"
+                android:layout_width="190dp"
+                android:layout_height="32dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="26dp"
+                android:background="@drawable/edittextback"
+                android:gravity="center"
+                android:hint="输入手机号"
+                android:singleLine="true"
+                android:textColorHint="#999"
+                android:textSize="12dp" />
+
+            <LinearLayout
+                android:layout_width="180dp"
+                android:layout_height="35dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="15dp">
+
+                <bluetooth.inuker.com.grassinvain.common.widget.MyEditText
+                    android:id="@+id/forget_yanzhegnma"
+                    android:layout_width="90dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/edittextback"
+                    android:gravity="center"
+                    android:hint="输入验证码"
+                    android:inputType="number"
+                    android:singleLine="true"
+                    android:textColorHint="#999"
+                    android:textSize="12dp" />
+
+                <LinearLayout
+                    android:layout_width="90dp"
+                    android:layout_height="35dp"
+                    android:gravity="center">
+                    <TextView
+                        android:id="@+id/forget_send_yanzhegnma"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="获取验证码"
+                        android:textColor="@color/sendyanzhegnma"
+                        android:textSize="12dp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <bluetooth.inuker.com.grassinvain.common.widget.MyEditText
+                android:id="@+id/forget_firstpwd"
+                android:layout_width="190dp"
+                android:layout_height="32dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/edittextback"
+                android:gravity="center"
+                android:hint="输入密码"
+                android:singleLine="true"
+                android:textColorHint="#999"
+                android:textSize="12dp" />
+
+            <bluetooth.inuker.com.grassinvain.common.widget.MyEditText
+                android:id="@+id/forget_secondpwd"
+                android:layout_width="190dp"
+                android:layout_height="32dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/edittextback"
+                android:gravity="center"
+                android:hint="确认密码"
+                android:singleLine="true"
+                android:textColorHint="#999"
+                android:textSize="12dp" />
+
+            <Button
+                android:id="@+id/forget_submit"
+                android:layout_width="180dp"
+                android:layout_height="42dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="120dp"
+                android:textColor="#fff"
+                android:background="@drawable/shape_corner"
+                android:text="提交"/>
+        </LinearLayout>
+
+
+    </RelativeLayout>
+</LinearLayout>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/shop_xuze"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="15dp"
+        android:src="@mipmap/weixuan" />
+
+    <ImageView
+        android:id="@+id/shop_tupian"
+        android:layout_width="62dp"
+        android:layout_height="62dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginBottom="14dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="14dp"
+        android:src="@mipmap/shangchuanpic"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:layout_marginLeft="13dp"
+        android:layout_marginTop="14dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/shop_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="天|一|生|水" />
+
+        <TextView
+            android:id="@+id/shop_guige"
+            android:layout_width="70dp"
+            android:layout_height="25dp"
+            android:layout_weight="1"
+            android:text="规格：小瓶"
+            android:textSize="12sp"
+            android:gravity="center_vertical"
+             />
+
+        <TextView
+            android:id="@+id/shop_jiage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="¥400"
+            android:textColor="#80aa2a"
+           />
+
+        <TextView
+            android:id="@+id/shop_daping"
+            android:layout_width="70dp"
+            android:layout_height="25dp"
+            android:background="@mipmap/recharge_unselected"
+            android:gravity="center"
+            android:visibility="gone"
+            android:text="大瓶"/>
+
+        <TextView
+            android:id="@+id/shop_xiaoping"
+            android:layout_width="70dp"
+            android:layout_height="25dp"
+            android:background="@mipmap/recharge_unselected"
+            android:gravity="center"
+            android:visibility="gone"
+            android:text="小瓶"/>
+
+    </LinearLayout>
+    <TextView
+        android:id="@+id/shop_shuliang"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="3dp"
+        android:text="X1"
+        />
+    <LinearLayout
+        android:id="@+id/shop_genggai"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:layout_gravity="bottom"
+        android:visibility="gone"
+        android:layout_marginBottom="3dp">
+       <ImageView
+           android:id="@+id/shop_jian"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:src="@mipmap/shopcart_minus_grey"/>
+        <TextView
+            android:id="@+id/shop_num"
+            android:layout_width="15dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="1"/>
+        <ImageView
+            android:id="@+id/shop_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/shopcart_add_red"/>
+    </LinearLayout>
+</LinearLayout>

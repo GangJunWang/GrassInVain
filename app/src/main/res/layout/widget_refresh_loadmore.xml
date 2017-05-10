@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<bluetooth.inuker.com.grassinvain.common.widget.ultra.loadmore.RLPtrFrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/refresh_framentlayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <bluetooth.inuker.com.grassinvain.common.widget.ultra.loadmore.LRecyclerView
+        android:id="@+id/loadmore_RecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+</bluetooth.inuker.com.grassinvain.common.widget.ultra.loadmore.RLPtrFrameLayout>

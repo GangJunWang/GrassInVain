@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 透明 -->
+    <color name="transparent">#00000000</color>
+    <!-- 半透明 (浮层效果) -->
+    <color name="translucence">#65000000</color>
+    <!-- 随机颜色 -->
+    <color name="ColorA">#33B5E5</color>
+    <color name="ColorB">#AA66CC</color>
+    <color name="ColorC">#99CC00</color>
+    <color name="ColorD">#FFBB33</color>
+    <color name="ColorE">#FF4444</color>
+</resources>
