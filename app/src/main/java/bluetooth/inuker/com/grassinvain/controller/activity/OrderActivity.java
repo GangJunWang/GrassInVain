@@ -145,8 +145,6 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                 break;
             case R.id.textView15:
                 popupWindow();
-
-
                 break;
             case R.id.zhifubao:
                 zhifubao_src.setImageResource(R.mipmap.xuanzhong);
