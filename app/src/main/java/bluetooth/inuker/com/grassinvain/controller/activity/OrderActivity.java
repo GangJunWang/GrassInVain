@@ -197,6 +197,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
             }
             @Override
             public void onFailure(int resultCode, String message) {
+                
             }
         });
     }
