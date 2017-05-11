@@ -65,7 +65,6 @@ public class ShoppingFragment extends Fragment implements ShoppingCartListenter,
             @Override
             public void onSuccess(ShopCarListBody shopCarListBody) {
                 list = shopCarListBody.list;
-
                 initRecyclerView();
             }
             @Override
@@ -210,7 +209,6 @@ public class ShoppingFragment extends Fragment implements ShoppingCartListenter,
                     } else {
                         digui();
                     }
-
                     shopCartAdapter.notifyDataSetChanged();
                 } else {
                     Intent intent1 = new Intent(getActivity(), OrderActivity.class);

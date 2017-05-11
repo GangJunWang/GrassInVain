@@ -182,16 +182,11 @@ public class ShopCart2Adapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     }
 
 
-
-
-
-
-
     class ShopCartViewHolder extends RecyclerView.ViewHolder{
         private ImageView shop_xuze,shop_tupian;
         private TextView shop_title,shop_guige,shop_jiage,shop_daping,shop_xiaoping,shop_shuliang,shop_num;
         private LinearLayout shop_genggai;
-        private ImageView shop_jian,shop_add;
+        private TextView shop_jian,shop_add;
 
         public ShopCartViewHolder(View itemView) {
             super(itemView);
@@ -205,8 +200,8 @@ public class ShopCart2Adapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             shop_shuliang= (TextView) itemView.findViewById(R.id.shop_shuliang);
             shop_num= (TextView) itemView.findViewById(R.id.shop_num);
             shop_genggai= (LinearLayout) itemView.findViewById(R.id.shop_genggai);
-            shop_jian= (ImageView) itemView.findViewById(R.id.shop_jian);
-            shop_add= (ImageView) itemView.findViewById(R.id.shop_add);
+            shop_jian= (TextView) itemView.findViewById(R.id.shop_jian);
+            shop_add= (TextView) itemView.findViewById(R.id.shop_add);
         }
     }
 }

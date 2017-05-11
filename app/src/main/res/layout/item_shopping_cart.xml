@@ -80,6 +80,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:layout_marginBottom="3dp"
+        android:layout_marginRight="10dp"
         android:text="X1"
         />
     <LinearLayout
@@ -90,21 +91,26 @@
         android:layout_gravity="bottom"
         android:visibility="gone"
         android:layout_marginBottom="3dp">
-       <ImageView
+       <TextView
            android:id="@+id/shop_jian"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:src="@mipmap/shopcart_minus_grey"/>
+           android:layout_width="15dp"
+           android:layout_height="15dp"
+           android:text="-"
+           android:gravity="center"
+           android:background="@drawable/background_xiankuang" />
         <TextView
             android:id="@+id/shop_num"
             android:layout_width="15dp"
             android:layout_height="wrap_content"
+            android:background="@drawable/background_xiankuang"
             android:gravity="center"
             android:text="1"/>
-        <ImageView
+        <TextView
             android:id="@+id/shop_add"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/shopcart_add_red"/>
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:gravity="center"
+            android:text="+"
+            android:background="@drawable/background_xiankuang" />
     </LinearLayout>
 </LinearLayout>

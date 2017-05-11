@@ -115,7 +115,7 @@ public class TixianRecoder extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        switch (resultCode){
+        switch (resultCode) {
             case RESULT_OK:
                 Bundle extras = data.getExtras();
                 bankcard = (BankCardChiredBody) extras.getSerializable("bankcard");
