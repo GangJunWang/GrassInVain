@@ -362,6 +362,29 @@ public class MainActivity extends BaseActivity {
                 .commit();
     }
 
+    /**
+     * 当购物车没有商品时切换到首页选择商品进行购买
+     */
+
+    public  void   changeFragment() {
+        cehuaitem2image.setImageResource(R.mipmap.gouwucheweixuan);
+        cehuaitem2text.setTextColor(this.getResources().getColor(R.color.write));
+        cehuaitem2xian.setVisibility(View.INVISIBLE);
+        cehuaitem1image.setImageResource(R.mipmap.shouyexuanzhong);
+        cehuaitem1text.setTextColor(this.getResources().getColor(R.color.zhuticolor));
+        cehuaitem1xian.setVisibility(View.VISIBLE);
+
+        cehuaitem3image.setImageResource(R.mipmap.personweixun);
+        cehuaitem3text.setTextColor(this.getResources().getColor(R.color.write));
+        cehuaitem3xian.setVisibility(View.INVISIBLE);
+
+        cehuaitem4image.setImageResource(R.mipmap.messageweixuan);
+        cehuaitem4text.setTextColor(this.getResources().getColor(R.color.write));
+        change(fragmentList.get(0));
+
+
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -385,9 +408,7 @@ public class MainActivity extends BaseActivity {
                     }
 
                     if (file != null) {
-
                         ((PersonCenterFragment) (fragmentList.get(2))).setImageIdcard(file.toString());
-
                     }
                 }
             }

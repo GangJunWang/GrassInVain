@@ -17,5 +17,6 @@ public class ProductPersonBody implements Serializable {
     public List<ProductPersonImageBody>productEvaluateImagesList;
     public String avatarUrl;
     public String productId;
+    public String createAt;
     public String evaluateContent;
 }

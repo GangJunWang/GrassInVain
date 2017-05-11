@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bluetooth.inuker.com.grassinvain.R;
+import bluetooth.inuker.com.grassinvain.controller.MainActivity;
 import bluetooth.inuker.com.grassinvain.controller.activity.OrderActivity;
 import bluetooth.inuker.com.grassinvain.controller.adapter.ShopCart2Adapter;
 import bluetooth.inuker.com.grassinvain.controller.personinformation.ShoppingCartListenter;
@@ -47,12 +49,16 @@ public class ShoppingFragment extends Fragment implements ShoppingCartListenter,
     private List<ShopCartBody> list;
     private List<ProductSDeatilBody> productSDeatilBodyList = new ArrayList<>();
     private ProductSDeatilBody productSDeatilBody;
+    private List listprodect = new ArrayList();
+    private RelativeLayout zanwushangpin;
+    private TextView change_firstFragment;
+    private RelativeLayout quanbuyincang;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.gouewuche_activity, null);
         userModel = new UserModel(getActivity());
-
         return view;
     }
 
@@ -65,8 +71,17 @@ public class ShoppingFragment extends Fragment implements ShoppingCartListenter,
             @Override
             public void onSuccess(ShopCarListBody shopCarListBody) {
                 list = shopCarListBody.list;
+                if (0 != list.size()) {
+                    quanbuyincang.setVisibility(View.VISIBLE);
+                    zanwushangpin.setVisibility(View.GONE);
+                }
+                if (0 == list.size()) {
+                    zanwushangpin.setVisibility(View.VISIBLE);
+                    quanbuyincang.setVisibility(View.GONE);
+                }
                 initRecyclerView();
             }
+
             @Override
             public void onFailure(int resultCode, String message) {
             }
@@ -99,19 +114,19 @@ public class ShoppingFragment extends Fragment implements ShoppingCartListenter,
                 }
                 float mTotalPrice = 0;
                 mTotalPrice1 = 0;
-                if (productSDeatilBodyList!=null){
+                if (productSDeatilBodyList != null) {
                     productSDeatilBodyList.clear();
                 }
                 for (int i = 0; i < list.size(); i++)
                     if (list.get(i).isCheckout()) {
-                        mTotalPrice += Integer.parseInt(list.get(i).formatPrice)*Integer.parseInt(list.get(i).count);
-                        productSDeatilBody= new ProductSDeatilBody();
-                        productSDeatilBody.count=list.get(i).count;
-                        productSDeatilBody.formatName=list.get(i).formatName;
-                        productSDeatilBody.productName=list.get(i).productName;
-                        productSDeatilBody.logoUrl=list.get(i).logoUrl;
-                        productSDeatilBody.productId=list.get(i).productId;
-                        productSDeatilBody.productFormatPrice=list.get(i).formatPrice;
+                        mTotalPrice += Integer.parseInt(list.get(i).formatPrice) * Integer.parseInt(list.get(i).count);
+                        productSDeatilBody = new ProductSDeatilBody();
+                        productSDeatilBody.count = list.get(i).count;
+                        productSDeatilBody.formatName = list.get(i).formatName;
+                        productSDeatilBody.productName = list.get(i).productName;
+                        productSDeatilBody.logoUrl = list.get(i).logoUrl;
+                        productSDeatilBody.productId = list.get(i).productId;
+                        productSDeatilBody.productFormatPrice = list.get(i).formatPrice;
                         productSDeatilBodyList.add(productSDeatilBody);
                     }
                 mTotalPrice1 = mTotalPrice;
@@ -135,7 +150,19 @@ public class ShoppingFragment extends Fragment implements ShoppingCartListenter,
     }
 
     private void initView() {
-
+        /**
+         * 默认背景
+         */
+        zanwushangpin = (RelativeLayout) getView().findViewById(R.id.zanwushuju);
+        /**
+         * 底部选项卡
+         */
+        quanbuyincang = (RelativeLayout) getView().findViewById(R.id.quanbuyincang);
+        /**
+         * 购物车暂无商品  切换到首页
+         */
+        change_firstFragment = (TextView) getView().findViewById(R.id.change_firstFragment);
+        change_firstFragment.setOnClickListener(this);
         shoppingCart_recyclerView = (RecyclerView) getView().findViewById(R.id.shoppingCart_recyclerView);
         shoppingCart_quanxuan = (ImageView) getView().findViewById(R.id.shoppingCart_quanxuan);
         shoppingCart_quanxuan.setOnClickListener(this);
@@ -186,6 +213,12 @@ public class ShoppingFragment extends Fragment implements ShoppingCartListenter,
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
+            // 切换到首页商品列表
+            case R.id.change_firstFragment:
+                MainActivity activity = (MainActivity) getActivity();
+                activity.changeFragment();
+                break;
+            // 全部选择
             case R.id.shoppingCart_quanxuan:
                 mSelect = !mSelect;
                 if (mSelect) {
@@ -201,19 +234,42 @@ public class ShoppingFragment extends Fragment implements ShoppingCartListenter,
                 }
                 shopCartAdapter.notifyDataSetChanged();
                 break;
+            // 去结算
             case R.id.shoppingCart_jiesuan:
                 if (shoppingCart_jiesuan.getText().toString().trim().equals("删除")) {
-                    Toast.makeText(getActivity(), "删除", Toast.LENGTH_SHORT).show();
-                    if (mSelect) {
-                        list.clear();
+
+                    if (0 != productSDeatilBodyList.size()) {
+                        Toast.makeText(getActivity(), "删除", Toast.LENGTH_SHORT).show();
+                        if (mSelect) {
+                            list.clear();
+                        } else {
+                            digui();
+                        }
+                        shopCartAdapter.notifyDataSetChanged();
+                        userModel.getdeleteProduct(listprodect, new Callback<Object>() {
+                            @Override
+                            public void onSuccess(Object o) {
+
+                            }
+
+                            @Override
+                            public void onFailure(int resultCode, String message) {
+
+                            }
+                        });
                     } else {
-                        digui();
+                        Toast.makeText(getActivity(), "没有选中的产品", Toast.LENGTH_SHORT).show();
                     }
-                    shopCartAdapter.notifyDataSetChanged();
+
                 } else {
-                    Intent intent1 = new Intent(getActivity(), OrderActivity.class);
-                    intent1.putExtra("product", (Serializable)productSDeatilBodyList);
-                    startActivity(intent1);
+                    if (0 != productSDeatilBodyList.size()) {
+                        Intent intent1 = new Intent(getActivity(), OrderActivity.class);
+                        intent1.putExtra("product", (Serializable) productSDeatilBodyList);
+                        startActivity(intent1);
+                    } else {
+                        Toast.makeText(getActivity(), "没有选中的产品", Toast.LENGTH_SHORT).show();
+                    }
+
                 }
 
                 break;
@@ -224,10 +280,13 @@ public class ShoppingFragment extends Fragment implements ShoppingCartListenter,
 
     private void digui() {
         for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).isCheckout()){
+            if (list.get(i).isCheckout()) {
+                listprodect.add(list.get(i).formatId);
                 list.remove(i);
                 digui();
             }
         }
     }
+
+
 }

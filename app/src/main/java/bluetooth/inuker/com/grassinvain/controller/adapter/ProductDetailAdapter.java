@@ -11,13 +11,13 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 import bluetooth.inuker.com.grassinvain.R;
-import bluetooth.inuker.com.grassinvain.network.body.response.ProductSpeakBody;
+import bluetooth.inuker.com.grassinvain.network.body.response.ProductPersonBody;
 
 /**
  * Created by 1 on 2017/3/31.
  */
 
-public class ProductDetailAdapter extends SuperAdapter<ProductSpeakBody> {
+public class ProductDetailAdapter extends SuperAdapter<ProductPersonBody> {
 
     /**
      * Constructor for single itemView type.
@@ -26,26 +26,25 @@ public class ProductDetailAdapter extends SuperAdapter<ProductSpeakBody> {
      * @param items
      * @param layoutResId
      */
-    public ProductDetailAdapter(Context context, List<ProductSpeakBody> items, int layoutResId) {
+    public ProductDetailAdapter(Context context, List<ProductPersonBody> items, int layoutResId) {
         super(context, items, layoutResId);
     }
 
 
     @Override
-    public void onBind(SuperViewHolder holder, int viewType, int layoutPosition, ProductSpeakBody item) {
+    public void onBind(SuperViewHolder holder, int viewType, int layoutPosition, ProductPersonBody item) {
         //头像
-       ImageView imageView = holder.findViewById(R.id.speak_image);
-        Picasso.with(mContext).load(item.imageUrl).placeholder(R.mipmap.chanpintu).into(imageView);
-        // 举报
-        ImageView jubao = holder.findViewById(R.id.speak_jubao);
+        ImageView imageView = holder.findViewById(R.id.speak_image);
+        Picasso.with(mContext).load(item.avatarUrl).placeholder(R.mipmap.chanpintu).into(imageView);
+        //姓名
+        TextView name = holder.findViewById(R.id.name);
+        name.setText(item.userName);
         //时间
         TextView time = holder.findViewById(R.id.speak_time);
-        //规格
-        TextView huige = holder.findViewById(R.id.speak_guige);
-        //规格内容
-        TextView guigeConton = holder.findViewById(R.id.speak_guige_contont);
+        time.setText(item.createAt);
         //评论内容
         TextView speakCOntont = holder.findViewById(R.id.speak_contont);
+        speakCOntont.setText(item.evaluateContent);
 
     }
 }

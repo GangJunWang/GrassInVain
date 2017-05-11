@@ -7,6 +7,7 @@ import bluetooth.inuker.com.grassinvain.common.model.OssAuth;
 import bluetooth.inuker.com.grassinvain.network.body.UserInfo;
 import bluetooth.inuker.com.grassinvain.network.body.request.AddAdressBody;
 import bluetooth.inuker.com.grassinvain.network.body.request.JoinShoppingCarBody;
+import bluetooth.inuker.com.grassinvain.network.body.request.SubSpeakBody;
 import bluetooth.inuker.com.grassinvain.network.body.request.SubmitOrderBody;
 import bluetooth.inuker.com.grassinvain.network.body.request.SysmessageBody;
 import bluetooth.inuker.com.grassinvain.network.body.request.TixianBody;
@@ -20,6 +21,7 @@ import bluetooth.inuker.com.grassinvain.network.body.response.PageBody;
 import bluetooth.inuker.com.grassinvain.network.body.response.PersonShouyiZhangdanBody;
 import bluetooth.inuker.com.grassinvain.network.body.response.ProductBody;
 import bluetooth.inuker.com.grassinvain.network.body.response.ProductSDeatilBody;
+import bluetooth.inuker.com.grassinvain.network.body.response.ProductSpeakList;
 import bluetooth.inuker.com.grassinvain.network.body.response.ProductSpreakBody;
 import bluetooth.inuker.com.grassinvain.network.body.response.ShopCarListBody;
 import bluetooth.inuker.com.grassinvain.network.body.response.UserAddressListBody;
@@ -102,4 +104,10 @@ public interface IUserModel {
 
     void getTixian(TixianBody tixianBody, Callback<Object> callback);
 
+
+    void getdeleteProduct(List list, Callback<Object> callback);
+
+    void getproductSpeaklist(String orderNo, Callback<ProductSpeakList> callback);
+
+    void getSubSpeak(SubSpeakBody subSpeakBody, Callback<Object> callback);
 }

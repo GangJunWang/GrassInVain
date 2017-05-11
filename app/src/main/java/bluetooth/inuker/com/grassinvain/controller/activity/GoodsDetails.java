@@ -29,8 +29,9 @@ import bluetooth.inuker.com.grassinvain.controller.adapter.ProductDetailAdapter;
 import bluetooth.inuker.com.grassinvain.controller.login.LoginActivity;
 import bluetooth.inuker.com.grassinvain.network.body.request.JoinShoppingCarBody;
 import bluetooth.inuker.com.grassinvain.network.body.response.PageBody;
+import bluetooth.inuker.com.grassinvain.network.body.response.ProductPersonBody;
 import bluetooth.inuker.com.grassinvain.network.body.response.ProductSDeatilBody;
-import bluetooth.inuker.com.grassinvain.network.body.response.ProductSpeakBody;
+import bluetooth.inuker.com.grassinvain.network.body.response.ProductSpeakList;
 import bluetooth.inuker.com.grassinvain.network.body.response.ProductSpreakBody;
 import bluetooth.inuker.com.grassinvain.network.model.UserModel;
 import bluetooth.inuker.com.grassinvain.network.model.callback.Callback;
@@ -52,11 +53,15 @@ public class GoodsDetails extends AppCompatActivity implements View.OnClickListe
     private List<ProductSDeatilBody> productSDeatilBodies1;
     private TextView product_name;
     private TextView product_price;
-    private List<ProductSpeakBody> data = new ArrayList<>();
+    private List<ProductPersonBody> data = new ArrayList<>();
     private TextView detail_big;
     private TextView detail_small;
     private String productGuigeId;
     private List<ProductSDeatilBody> list = new ArrayList<>();
+    private ProductSpeakList productSpeakList1;
+    private ProductDetailAdapter productDetailAdapter;
+    //商品评价的页码
+    private int page = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,19 +70,25 @@ public class GoodsDetails extends AppCompatActivity implements View.OnClickListe
         userModel = new UserModel(this);
         Intent intent = getIntent();
         productsId = intent.getStringExtra("result");
-        initData();
+        initData(page);
     }
 
-    private void initData() {
+    private void initData(int page) {
 
         int i = Integer.parseInt(productsId);
         PageBody pageBody = new PageBody();
-        pageBody.pageNum = 1;
-        pageBody.pageSize = 10;
+        pageBody.pageNum = page;
+        pageBody.pageSize = 20;
         pageBody.orders = "";
         userModel.getPSpeakList(i, pageBody, new Callback<ProductSpreakBody>() {
             @Override
             public void onSuccess(ProductSpreakBody productSpreakBody) {
+                productDetailAdapter.clear();
+                data.clear();
+                List<ProductPersonBody> list = productSpreakBody.list;
+                data.addAll(list);
+                productDetailAdapter.addAll(list);
+                productDetailAdapter.notifyDataSetHasChanged();
 
             }
 
@@ -196,7 +207,7 @@ public class GoodsDetails extends AppCompatActivity implements View.OnClickListe
 
         //商品详情
         shangpinpingjia = (TextView) findViewById(R.id.shangpinpingjia);
-        shangpinpingjia.setText(productSDeatilBodies1.get(0).productDesc);
+        shangpinpingjia.setText("        " + productSDeatilBodies1.get(0).productDesc);
 
         //商品评价
         pinglun_recycView = (RecyclerView) findViewById(R.id.pinglun_recycView);
@@ -207,10 +218,8 @@ public class GoodsDetails extends AppCompatActivity implements View.OnClickListe
             }
         };
         pinglun_recycView.setLayoutManager(linearLayoutManager);
-        // 数据给适配器  评价
-        List<ProductSpeakBody> productsDetailImageList = productSDeatilBodies1.get(0).productDetailImageList;
-        data.addAll(productsDetailImageList);
-        pinglun_recycView.setAdapter(new ProductDetailAdapter(getBaseContext(), data, R.layout.activity_shangpindetail_contont));
+        productDetailAdapter = new ProductDetailAdapter(getBaseContext(), data, R.layout.activity_shangpindetail_contont);
+        pinglun_recycView.setAdapter(productDetailAdapter);
         detailScrollView = (ScrollView) findViewById(R.id.Detail_ScroView);
         detailScrollView.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -227,6 +236,8 @@ public class GoodsDetails extends AppCompatActivity implements View.OnClickListe
                         int height = detailScrollView.getHeight();
                         if (measuredHeight <= scrollY + height) {
                             // 已经滑动的距离+在屏幕上显示的高度>=控件真实高度。说明已经滑动到底部
+                            //此时在底部  应该加载更多的数据
+                        //    initData(page++);
                         }
                         break;
                     }
@@ -237,6 +248,7 @@ public class GoodsDetails extends AppCompatActivity implements View.OnClickListe
             }
         });
     }
+
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -281,13 +293,13 @@ public class GoodsDetails extends AppCompatActivity implements View.OnClickListe
                 } else {
                     Intent intent1 = new Intent(GoodsDetails.this, OrderActivity.class);
 
-                    if (product_price.getText().toString().equals(productSDeatilBodies1.get(0).productFormatPrice)){
+                    if (product_price.getText().toString().equals(productSDeatilBodies1.get(0).productFormatPrice)) {
                         list.add(productSDeatilBodies1.get(0));
-                        intent1.putExtra("product", (Serializable)list);
+                        intent1.putExtra("product", (Serializable) list);
                     }
-                    if (product_price.getText().toString().equals(productSDeatilBodies1.get(1).productFormatPrice)){
+                    if (product_price.getText().toString().equals(productSDeatilBodies1.get(1).productFormatPrice)) {
                         list.add(productSDeatilBodies1.get(1));
-                        intent1.putExtra("product", (Serializable)list);
+                        intent1.putExtra("product", (Serializable) list);
                     }
                     startActivity(intent1);
                 }
@@ -296,13 +308,10 @@ public class GoodsDetails extends AppCompatActivity implements View.OnClickListe
     }
 
     private class Banner {
-
         String url;
-
         public Banner(String url) {
             this.url = url;
         }
-
         public String getUrl() {
             return url;
         }

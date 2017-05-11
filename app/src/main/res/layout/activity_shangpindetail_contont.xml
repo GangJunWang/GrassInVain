@@ -17,18 +17,22 @@
             android:layout_height="25dp"
             android:layout_alignParentLeft="true"
             android:layout_margin="10dp"
-
             android:scaleType="fitXY"
             android:src="@mipmap/chanpintu"
             app:riv_corner_radius="@dimen/dp60" />
 
-        <ImageView
-            android:id="@+id/speak_jubao"
+        <TextView
+            android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_margin="10dp"
-            android:src="@mipmap/xiangqingdian" />
+            android:text="姓名"
+            android:textSize="12dp"
+            android:textStyle="bold"
+            android:layout_alignBottom="@+id/speak_image"
+            android:layout_toRightOf="@+id/speak_image"
+            android:layout_toEndOf="@+id/speak_image"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp" />
 
     </RelativeLayout>
 
@@ -44,25 +48,6 @@
             android:textSize="12dp"
             android:layout_marginLeft="5dp"
             android:text="2017-02-22"/>
-
-        <TextView
-            android:id="@+id/speak_guige"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#999"
-            android:textSize="12dp"
-            android:layout_marginLeft="15dp"
-            android:text="规格:"/>
-
-        <TextView
-            android:id="@+id/speak_guige_contont"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#999"
-            android:textSize="12dp"
-            android:layout_marginLeft="10dp"
-            android:text="大瓶"/>
-
     </LinearLayout>
 
     <TextView

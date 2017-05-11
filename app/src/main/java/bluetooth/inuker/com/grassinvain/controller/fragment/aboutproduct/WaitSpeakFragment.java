@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bluetooth.inuker.com.grassinvain.R;
-import bluetooth.inuker.com.grassinvain.controller.activity.EvaluationGoods;
+import bluetooth.inuker.com.grassinvain.controller.activity.ProductSpexkActivity;
 import bluetooth.inuker.com.grassinvain.controller.adapter.dingdanadapter.WaitSpeakFragmentAdapter;
 import bluetooth.inuker.com.grassinvain.network.body.response.AllOrderBody;
 import bluetooth.inuker.com.grassinvain.network.body.response.AllOrderfirstBody;
@@ -65,29 +65,36 @@ public class WaitSpeakFragment extends Fragment {
                 swipeRefresh_wiat_speak.setRefreshing(false);
             }
         });
+
+
         // 复用控件
         wait_speak_recycView = (RecyclerView) view.findViewById(R.id.wait_speak_recycView);
         wait_speak_recycView.setLayoutManager(new LinearLayoutManager(getActivity()));
         // 适配器准备
         waitSpeakFragmentAdapter = new WaitSpeakFragmentAdapter(getActivity(), data, R.layout.wait_pay_contont);
         wait_speak_recycView.setAdapter(waitSpeakFragmentAdapter);
+
+
         waitSpeakFragmentAdapter.setOnItemClickListener(new WaitSpeakFragmentAdapter.ChooseType() {
             @Override
             public void chooseSpeak(int positon, String type, String order) {
-                if ("去评价".equals(type)){
-                    Intent intent1 = new Intent(getActivity(), EvaluationGoods.class);
-                    intent1.putExtra("order",order);
-                    startActivity(intent1);
+                if ("去评价".equals(type)) {
+                    Intent intent = new Intent(getActivity(), ProductSpexkActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("order", data.get(positon));
+                    intent.putExtras(bundle);
+                    startActivity(intent);
                 }
             }
 
             @Override
             public void choosedetele(int positon, String type, String order) {
-                if ("删除订单".equals(type)){
-                    Toast.makeText(getActivity(),"暂不支持删除",Toast.LENGTH_SHORT).show();
+                if ("删除订单".equals(type)) {
+                    Toast.makeText(getActivity(), "暂不支持删除", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+
 
         /**
          * 实现上拉加载
@@ -99,7 +106,7 @@ public class WaitSpeakFragment extends Fragment {
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
                 if (newState == RecyclerView.SCROLL_STATE_IDLE && lastVisibleItem + 1 == waitSpeakFragmentAdapter.getItemCount()) {
-                    Toast.makeText(getActivity(), "正在加载........", Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(getActivity(), "正在加载........", Toast.LENGTH_SHORT).show();
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -120,6 +127,8 @@ public class WaitSpeakFragment extends Fragment {
 
 
     }
+
+
     private void initData(int pagesize) {
         PageBody pageBody = new PageBody();
         pageBody.pageNum = pagesize;
@@ -129,15 +138,18 @@ public class WaitSpeakFragment extends Fragment {
             @Override
             public void onSuccess(AllOrderBody allOrderBody) {
                 List<AllOrderfirstBody> list = allOrderBody.list;
-                if (0 == list.size()){
-                    Toast.makeText(getActivity(),"数据已全部加载完毕",Toast.LENGTH_SHORT).show();
+                if (0 == list.size()) {
+                    Toast.makeText(getActivity(), "数据已全部加载完毕", Toast.LENGTH_SHORT).show();
                 }
                 data.addAll(list);
                 waitSpeakFragmentAdapter.addAll(list);
             }
+
             @Override
             public void onFailure(int resultCode, String message) {
             }
         });
     }
+
+
 }

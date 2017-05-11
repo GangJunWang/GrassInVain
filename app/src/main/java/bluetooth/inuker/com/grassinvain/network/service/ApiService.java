@@ -8,6 +8,7 @@ import bluetooth.inuker.com.grassinvain.network.body.UserInfo;
 import bluetooth.inuker.com.grassinvain.network.body.request.AddAdressBody;
 import bluetooth.inuker.com.grassinvain.network.body.request.AddCardentry;
 import bluetooth.inuker.com.grassinvain.network.body.request.JoinShoppingCarBody;
+import bluetooth.inuker.com.grassinvain.network.body.request.SubSpeakBody;
 import bluetooth.inuker.com.grassinvain.network.body.request.SubmitOrderBody;
 import bluetooth.inuker.com.grassinvain.network.body.request.SysmessageBody;
 import bluetooth.inuker.com.grassinvain.network.body.request.TixianBody;
@@ -21,6 +22,7 @@ import bluetooth.inuker.com.grassinvain.network.body.response.PageBody;
 import bluetooth.inuker.com.grassinvain.network.body.response.PersonShouyiZhangdanBody;
 import bluetooth.inuker.com.grassinvain.network.body.response.ProductBody;
 import bluetooth.inuker.com.grassinvain.network.body.response.ProductSDeatilBody;
+import bluetooth.inuker.com.grassinvain.network.body.response.ProductSpeakList;
 import bluetooth.inuker.com.grassinvain.network.body.response.ProductSpreakBody;
 import bluetooth.inuker.com.grassinvain.network.body.response.ShopCarListBody;
 import bluetooth.inuker.com.grassinvain.network.body.response.UserAddressListBody;
@@ -262,6 +264,26 @@ public interface ApiService {
     @POST("/accounts/addUserWithdraw")
     Observable<Response<Object>> getTixian(@Body TixianBody tixianBody);
 
+    /**
+     * 删除购物车商品
+     */
+
+    @POST("shopCar/delUserShopCar")
+    Observable<Response<Object>> getdeleteProduct(@Body List list);
+
+    /**
+     * 获取商品评价列表
+     */
+
+    @POST("/products/getProductEvaluate/{orderNo}/0")
+    Observable<Response<ProductSpeakList>> getproductSpeaklist(@Path("orderNo") String Id);
+
+    /**
+     * 提交评价
+     */
+
+    @POST("shopCar/delUserShopCar")
+    Observable<Response<Object>> getSubSpeak(@Body SubSpeakBody subSpeakBody);
 
 }
 

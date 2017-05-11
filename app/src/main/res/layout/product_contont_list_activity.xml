@@ -2,11 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#eee">
+    android:background="#fff"
+    android:orientation="vertical">
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#fff">
+        android:layout_height="wrap_content">
+
         <ImageView
             android:id="@+id/shop_tupian"
             android:layout_width="62dp"
@@ -14,8 +16,9 @@
             android:layout_gravity="center_vertical"
             android:layout_marginBottom="14dp"
             android:layout_marginLeft="25dp"
-            android:layout_marginTop="14dp"
-            android:src="@mipmap/morenproduct" />
+            android:layout_marginTop="20dp"
+            android:src="@mipmap/shangchuanpic" />
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -23,12 +26,14 @@
             android:layout_marginTop="14dp"
             android:layout_weight="1"
             android:orientation="vertical">
+
             <TextView
                 android:id="@+id/shop_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="天|一|生|水" />
+
             <TextView
                 android:id="@+id/shop_guige"
                 android:layout_width="70dp"
@@ -37,6 +42,7 @@
                 android:gravity="center_vertical"
                 android:text="规格：小瓶"
                 android:textSize="12sp" />
+
             <TextView
                 android:id="@+id/shop_jiage"
                 android:layout_width="wrap_content"
@@ -44,6 +50,25 @@
                 android:layout_weight="1"
                 android:text="¥400"
                 android:textColor="#80aa2a" />
+
+            <TextView
+                android:id="@+id/shop_daping"
+                android:layout_width="70dp"
+                android:layout_height="25dp"
+                android:background="@mipmap/recharge_unselected"
+                android:gravity="center"
+                android:text="大瓶"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/shop_xiaoping"
+                android:layout_width="70dp"
+                android:layout_height="25dp"
+                android:background="@mipmap/recharge_unselected"
+                android:gravity="center"
+                android:text="小瓶"
+                android:visibility="gone" />
+
         </LinearLayout>
 
         <TextView
@@ -53,9 +78,33 @@
             android:layout_gravity="bottom"
             android:layout_marginBottom="3dp"
             android:layout_marginRight="10dp"
-            android:textSize="10dp"
+            android:text="X1"
             android:textColor="#000"
-            android:text="X1" />
+            android:textSize="10dp" />
     </LinearLayout>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#8000" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <bluetooth.inuker.com.grassinvain.common.widget.MyEditText
+            android:id="@+id/speak_contont"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@null"
+            android:gravity="clip_horizontal"
+            android:hint="写下你对商品的评价~"
+            android:padding="10dp"
+            android:textSize="12dp" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:background="#0000" />
 </LinearLayout>

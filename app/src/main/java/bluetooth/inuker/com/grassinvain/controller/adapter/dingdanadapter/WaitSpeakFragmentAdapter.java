@@ -48,6 +48,7 @@ public class WaitSpeakFragmentAdapter extends SuperAdapter<AllOrderfirstBody> {
         /**
          * 子布局
          */
+
         RecyclerView recyclerView = holder.findViewById(R.id.recyclerView);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));

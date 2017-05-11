@@ -120,7 +120,7 @@ public class WaitPayFragment extends Fragment implements View.OnClickListener {
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
                 if (newState == RecyclerView.SCROLL_STATE_IDLE && lastVisibleItem + 1 == waitPayFragmentAdapter.getItemCount()) {
-                    Toast.makeText(getActivity(), "正在加载........", Toast.LENGTH_SHORT).show();
+                  //  Toast.makeText(getActivity(), "正在加载........", Toast.LENGTH_SHORT).show();
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {

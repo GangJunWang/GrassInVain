@@ -130,7 +130,7 @@
             android:layout_alignParentTop="true"
             android:layout_toLeftOf="@+id/textView17"
             android:layout_toStartOf="@+id/textView17"
-            android:text="8.5"
+            android:text="暂无"
             android:textColor="@color/zhuticolor" />
     </RelativeLayout>
 

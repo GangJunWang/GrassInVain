@@ -29,7 +29,6 @@ public abstract class SuperAdapter<T> extends BaseSuperAdapter<T> implements CRU
         super(context, items, layoutResId);
         this.mLayoutInflater = LayoutInflater.from(context);
     }
-
     @Override
     public SuperViewHolder onCreate(View convertView, ViewGroup parent, int viewType) {
         int resource;

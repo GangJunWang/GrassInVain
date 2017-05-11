@@ -64,17 +64,17 @@
         <activity android:name=".controller.activity.SystemSetting" />
         <!-- 意见反馈 -->
         <activity android:name=".controller.activity.Feedback" />
-        <!--  -->
+        <!-- 版本信息 -->
         <activity android:name=".controller.activity.TheVerSon" />
-        <!--  -->
+        <!-- 订单处理 -->
         <activity android:name=".controller.activity.OrderPeocess" />
-        <!--  -->
+        <!-- 工作收益状况 -->
         <activity android:name=".controller.activity.WorkResult" />
         <!-- 团队收益详情 -->
         <activity android:name=".controller.activity.TeamYejiDetail" />
         <!-- 收益详情 -->
         <activity android:name=".controller.activity.ShouyiDetail" />
-        <!--  -->
+        <!-- 提现详情 -->
         <activity android:name=".controller.activity.TixianRecoder" />
         <!-- 商品评价 -->
         <activity android:name=".controller.activity.EvaluationGoods" />
@@ -84,7 +84,6 @@
         <activity android:name=".controller.activity.personactivity.ChangeNameActivity" />
         <!-- 改变用户性别 -->
         <activity android:name=".controller.activity.personactivity.ChangeGenderActivity" />
-
         <activity android:name=".controller.activity.Submitorder" />
         <!-- 收货地址 -->
         <activity android:name=".controller.personinformation.TheGoodsAddress" />
@@ -94,10 +93,11 @@
         <activity android:name=".controller.activity.AddNewAddressActivity" />
         <!-- 提交订单 -->
         <activity android:name=".controller.activity.OrderActivity" />
-        <!--银行卡信息-->
+        <!-- 银行卡信息 -->
         <activity android:name=".controller.activity.personactivity.UserBankActivity" />
-        <!--物流详情-->
-        <activity android:name=".controller.activity.personactivity.WuliuActivity"></activity>
+        <!-- 物流详情 -->
+        <activity android:name=".controller.activity.personactivity.WuliuActivity" />
+        <activity android:name=".controller.activity.ProductSpexkActivity"></activity>
     </application>
 
 </manifest>

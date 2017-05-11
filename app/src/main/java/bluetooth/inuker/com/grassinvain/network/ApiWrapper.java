@@ -7,6 +7,7 @@ import bluetooth.inuker.com.grassinvain.common.model.OssAuth;
 import bluetooth.inuker.com.grassinvain.network.body.UserInfo;
 import bluetooth.inuker.com.grassinvain.network.body.request.AddAdressBody;
 import bluetooth.inuker.com.grassinvain.network.body.request.JoinShoppingCarBody;
+import bluetooth.inuker.com.grassinvain.network.body.request.SubSpeakBody;
 import bluetooth.inuker.com.grassinvain.network.body.request.SubmitOrderBody;
 import bluetooth.inuker.com.grassinvain.network.body.request.SysmessageBody;
 import bluetooth.inuker.com.grassinvain.network.body.request.TixianBody;
@@ -20,6 +21,7 @@ import bluetooth.inuker.com.grassinvain.network.body.response.PageBody;
 import bluetooth.inuker.com.grassinvain.network.body.response.PersonShouyiZhangdanBody;
 import bluetooth.inuker.com.grassinvain.network.body.response.ProductBody;
 import bluetooth.inuker.com.grassinvain.network.body.response.ProductSDeatilBody;
+import bluetooth.inuker.com.grassinvain.network.body.response.ProductSpeakList;
 import bluetooth.inuker.com.grassinvain.network.body.response.ProductSpreakBody;
 import bluetooth.inuker.com.grassinvain.network.body.response.ShopCarListBody;
 import bluetooth.inuker.com.grassinvain.network.body.response.UserAddressListBody;
@@ -355,13 +357,35 @@ public class ApiWrapper {
                 .compose(this.<Object>applySchedulers());
     }
 
+    /**
+     * 删除购物车商品
+     */
+    public Observable<Object> getdeleteProduct(List list) {
+        return RetrofitManager.getInstance().getUserService().getdeleteProduct(list)
+                .compose(this.<Object>applySchedulers());
+    }
+
+    /**
+     * 获取商品评价列表
+     */
+    public Observable<ProductSpeakList> getproductSpeaklist(String oederNo) {
+        return RetrofitManager.getInstance().getUserService().getproductSpeaklist(oederNo)
+                .compose(this.<ProductSpeakList>applySchedulers());
+    }
+
+    /**
+     * 提交评价
+     */
+    public Observable<Object> getSubSpeak(SubSpeakBody subSpeakBody) {
+        return RetrofitManager.getInstance().getUserService().getSubSpeak(subSpeakBody)
+                .compose(this.<Object>applySchedulers());
+    }
 
     /**
      * http://www.jianshu.com/p/e9e03194199e
      * Transformer实际上就是一个Func1<Observable<T>, Observable<R>>，
      * 换言之就是：可以通过它将一种类型的Observable转换成另一种类型的Observable，
      * 和调用一系列的内联操作符是一模一样的。
-     *
      * @param <T>
      * @return
      */

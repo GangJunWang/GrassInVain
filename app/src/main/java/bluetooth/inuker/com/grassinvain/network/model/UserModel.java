@@ -10,6 +10,7 @@ import bluetooth.inuker.com.grassinvain.network.ApiWrapper;
 import bluetooth.inuker.com.grassinvain.network.body.UserInfo;
 import bluetooth.inuker.com.grassinvain.network.body.request.AddAdressBody;
 import bluetooth.inuker.com.grassinvain.network.body.request.JoinShoppingCarBody;
+import bluetooth.inuker.com.grassinvain.network.body.request.SubSpeakBody;
 import bluetooth.inuker.com.grassinvain.network.body.request.SubmitOrderBody;
 import bluetooth.inuker.com.grassinvain.network.body.request.SysmessageBody;
 import bluetooth.inuker.com.grassinvain.network.body.request.TixianBody;
@@ -23,6 +24,7 @@ import bluetooth.inuker.com.grassinvain.network.body.response.PageBody;
 import bluetooth.inuker.com.grassinvain.network.body.response.PersonShouyiZhangdanBody;
 import bluetooth.inuker.com.grassinvain.network.body.response.ProductBody;
 import bluetooth.inuker.com.grassinvain.network.body.response.ProductSDeatilBody;
+import bluetooth.inuker.com.grassinvain.network.body.response.ProductSpeakList;
 import bluetooth.inuker.com.grassinvain.network.body.response.ProductSpreakBody;
 import bluetooth.inuker.com.grassinvain.network.body.response.ShopCarListBody;
 import bluetooth.inuker.com.grassinvain.network.body.response.UserAddressListBody;
@@ -731,5 +733,72 @@ public class UserModel extends BaseModel implements IUserModel {
         addSubscrebe(subscription);
     }
 
+    /**
+     * 删除购物车商品
+     */
 
+
+    @Override
+    public void getdeleteProduct(List list, final Callback<Object> callback) {
+        ApiWrapper apiWrapper = new ApiWrapper();
+        Subscription subscription = apiWrapper.getdeleteProduct(list)
+                .subscribe(new NewSubscriber<Object>(context, true) {
+                    @Override
+                    public void onNext(Object pager) {
+                        callback.onSuccess(pager);
+                    }
+
+                    @Override
+                    protected void onError(ApiException ex) {
+                        super.onError(ex);
+                        callback.onFailure(ex.getCode(), ex.getErrMessage());
+                    }
+                });
+        addSubscrebe(subscription);
+    }
+
+    /**
+     * 获取商品评价列表
+     */
+    @Override
+    public void getproductSpeaklist(String orderNo, final Callback<ProductSpeakList> callback) {
+        ApiWrapper apiWrapper = new ApiWrapper();
+        Subscription subscription = apiWrapper.getproductSpeaklist(orderNo)
+                .subscribe(new NewSubscriber<ProductSpeakList>(context, true) {
+                    @Override
+                    public void onNext(ProductSpeakList pager) {
+                        callback.onSuccess(pager);
+                    }
+
+                    @Override
+                    protected void onError(ApiException ex) {
+                        super.onError(ex);
+                        callback.onFailure(ex.getCode(), ex.getErrMessage());
+                    }
+                });
+        addSubscrebe(subscription);
+    }
+
+    /**
+     * 提交评价
+     */
+
+    @Override
+    public void getSubSpeak(SubSpeakBody subSpeakBody, final Callback<Object> callback) {
+        ApiWrapper apiWrapper = new ApiWrapper();
+        Subscription subscription = apiWrapper.getSubSpeak(subSpeakBody)
+                .subscribe(new NewSubscriber<Object>(context, true) {
+                    @Override
+                    public void onNext(Object pager) {
+                        callback.onSuccess(pager);
+                    }
+
+                    @Override
+                    protected void onError(ApiException ex) {
+                        super.onError(ex);
+                        callback.onFailure(ex.getCode(), ex.getErrMessage());
+                    }
+                });
+        addSubscrebe(subscription);
+    }
 }

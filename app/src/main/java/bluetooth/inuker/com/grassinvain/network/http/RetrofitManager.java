@@ -20,6 +20,7 @@ import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
  * retrofit管理类
  */
 public class RetrofitManager {
+
     private Context mContext;
     private static String API_HOST = MConstants.BASE_URL;// 服务器地址
     private static Retrofit retrofit;

@@ -24,6 +24,7 @@ import java.util.List;
 import bluetooth.inuker.com.grassinvain.R;
 import bluetooth.inuker.com.grassinvain.controller.adapter.OrderListAdapter;
 import bluetooth.inuker.com.grassinvain.controller.personinformation.TheGoodsAddress;
+import bluetooth.inuker.com.grassinvain.network.body.UserInfo;
 import bluetooth.inuker.com.grassinvain.network.body.request.SubmitOrderBody;
 import bluetooth.inuker.com.grassinvain.network.body.response.AddressDetailBody;
 import bluetooth.inuker.com.grassinvain.network.body.response.MorenAddressBody;
@@ -56,6 +57,9 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
     private TextView moren_phone;
 
     private int requestCode = 0;
+    private int shijiprice;
+    private int zongjai;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,7 +90,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
 
         // 商品合计总价
         xuyao_zhifu_price = (TextView) findViewById(R.id.xuyao_zhifu_price);
-        int zongjai = 0;
+        zongjai = 0;
         for (int i = 0; i < data.size(); i++) {
             int count = parseInt(data.get(i).count);
             int price = parseInt(data.get(i).productFormatPrice);
@@ -97,9 +101,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
         xuyao_zhifu_price.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
         //商品实际需要付款的金额
         shiji_price = (TextView) findViewById(R.id.textView16);
-        int shijiprice = 0;
-        shijiprice = (int) (zongjai * 0.85);
-        shiji_price.setText(shijiprice + "");
+        shijiprice = 0;
         // 提交订单
         TextView submitOrder = (TextView) findViewById(R.id.textView15);
         submitOrder.setOnClickListener(this);
@@ -112,6 +114,25 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void initData() {
+
+        /**
+         * 获取实时打折的折扣数
+         */
+
+        userModel.getPersonCentern(new Callback<UserInfo>() {
+            private String buyProportion;
+            @Override
+            public void onSuccess(UserInfo userInfo) {
+                buyProportion = userInfo.buyProportion;
+                huiyuan_zhuanxiang.setText(Integer.parseInt(buyProportion)*0.1 + "");
+                shijiprice = (int) (zongjai * Integer.parseInt(buyProportion)*0.1);
+                shiji_price.setText(shijiprice + "");
+            }
+            @Override
+            public void onFailure(int resultCode, String message) {
+            }
+        });
+
         /**
          * 获取默认地址列表
          */
@@ -193,6 +214,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
             public void onSuccess(Object o) {
                 Toast.makeText(getBaseContext(),"支付成功",Toast.LENGTH_SHORT).show();
                 mCameraDialog.cancel();
+                finish();
             }
             @Override
             public void onFailure(int resultCode, String message) {

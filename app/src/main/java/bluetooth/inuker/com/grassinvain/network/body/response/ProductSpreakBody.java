@@ -14,7 +14,7 @@ public class ProductSpreakBody implements Serializable {
     public String pages;
     public String pageNum;
     public String lastPage;
-    public String navigatepageNums;
+    public Object navigatepageNums;
     public String isLastPage;
     public String total;
     public String nextPage;
