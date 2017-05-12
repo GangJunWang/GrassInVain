@@ -14,6 +14,8 @@
             android:id="@+id/new_message_titile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="12dp"
+            android:textColor="#000"
             android:text="更新通知" />
 
         <TextView
@@ -21,6 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:textSize="10dp"
             android:text="2016-04-18" />
 
     </RelativeLayout>
@@ -34,6 +37,7 @@
             android:id="@+id/new_message_contont"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="10dp"
             android:text="暂无通知" />
     </LinearLayout>
 </LinearLayout>

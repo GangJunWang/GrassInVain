@@ -51,8 +51,18 @@ public class AlreadlyPayAdapter extends SuperAdapter<AllOrderfirstBody> {
          */
         RecyclerView recyclerView = holder.findViewById(R.id.recyclerView);
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),
+                LinearLayoutManager.VERTICAL, false) {
 
+            @Override
+            public boolean canScrollVertically() {
+
+                return false;
+
+            }
+
+        };
+        recyclerView.setLayoutManager(linearLayoutManager);
         List<AllOrdersecondBody> orderInfoList = item.orderInfoList;
 
         WaitPayAdapter adapter = new WaitPayAdapter(getContext(), orderInfoList, R.layout.order_list_contont);
@@ -93,8 +103,8 @@ public class AlreadlyPayAdapter extends SuperAdapter<AllOrderfirstBody> {
     }
 
     public interface ChooseType {
-        void chooseWuliu(int positon, String type, String order);
 
+        void chooseWuliu(int positon, String type, String order);
         void chooseShouhuo(int positon, String type, String order);
     }
 

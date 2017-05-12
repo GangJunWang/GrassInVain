@@ -20,6 +20,7 @@ import bluetooth.inuker.com.grassinvain.network.body.response.MorenAddressBody;
 import bluetooth.inuker.com.grassinvain.network.body.response.NewMessageBody;
 import bluetooth.inuker.com.grassinvain.network.body.response.PageBody;
 import bluetooth.inuker.com.grassinvain.network.body.response.PersonShouyiZhangdanBody;
+import bluetooth.inuker.com.grassinvain.network.body.response.PersonTeamShouyi;
 import bluetooth.inuker.com.grassinvain.network.body.response.ProductBody;
 import bluetooth.inuker.com.grassinvain.network.body.response.ProductSDeatilBody;
 import bluetooth.inuker.com.grassinvain.network.body.response.ProductSpeakList;
@@ -60,6 +61,7 @@ public interface ApiService {
 
     /**
      * 发送验证码
+     *
      * @param userBody
      * @return
      */
@@ -224,7 +226,7 @@ public interface ApiService {
     Observable<Response<SubmitOrderBody>> getSubmitOrder(@Body SubmitOrderBody submitOrderBody);
 
     /**
-     *提交订单号
+     * 提交订单号
      */
     @POST("/orders/cancelOrder/{orderNo}/0")
     Observable<Response<Object>> getSubmitOrdernumber(@Path("orderNo") String Id);
@@ -282,8 +284,18 @@ public interface ApiService {
      * 提交评价
      */
 
-    @POST("shopCar/delUserShopCar")
+    @POST("/products/addProductEvaluate/0")
     Observable<Response<Object>> getSubSpeak(@Body SubSpeakBody subSpeakBody);
 
+    /**
+     * 个人业绩列表
+     */
+    @POST("/accounts/getUserPerformancePage/0")
+    Observable<Response<PersonTeamShouyi>> getPersonTeamshouyi(@Body PageBody pageBody);
+    /**
+     * 团队业绩列表
+     */
+    @POST("/accounts/getTeamPerformancePage/0")
+    Observable<Response<PersonTeamShouyi>> getPersonTeamshouyi2(@Body PageBody pageBody);
 }
 

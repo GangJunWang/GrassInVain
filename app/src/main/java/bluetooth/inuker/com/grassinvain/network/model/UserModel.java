@@ -22,6 +22,7 @@ import bluetooth.inuker.com.grassinvain.network.body.response.MorenAddressBody;
 import bluetooth.inuker.com.grassinvain.network.body.response.NewMessageBody;
 import bluetooth.inuker.com.grassinvain.network.body.response.PageBody;
 import bluetooth.inuker.com.grassinvain.network.body.response.PersonShouyiZhangdanBody;
+import bluetooth.inuker.com.grassinvain.network.body.response.PersonTeamShouyi;
 import bluetooth.inuker.com.grassinvain.network.body.response.ProductBody;
 import bluetooth.inuker.com.grassinvain.network.body.response.ProductSDeatilBody;
 import bluetooth.inuker.com.grassinvain.network.body.response.ProductSpeakList;
@@ -801,4 +802,51 @@ public class UserModel extends BaseModel implements IUserModel {
                 });
         addSubscrebe(subscription);
     }
+    /**
+     * 个人收益列表
+     */
+
+    @Override
+    public void getPersonTeamshouyi(PageBody pageBody, final Callback<PersonTeamShouyi> callback) {
+        ApiWrapper apiWrapper = new ApiWrapper();
+        Subscription subscription = apiWrapper.getPersonTeamshouyi(pageBody)
+                .subscribe(new NewSubscriber<PersonTeamShouyi>(context, true) {
+                    @Override
+                    public void onNext(PersonTeamShouyi pager) {
+                        callback.onSuccess(pager);
+                    }
+
+                    @Override
+                    protected void onError(ApiException ex) {
+                        super.onError(ex);
+                        callback.onFailure(ex.getCode(), ex.getErrMessage());
+                    }
+                });
+        addSubscrebe(subscription);
+    }
+    /**
+     * 团队收益列表
+     */
+
+    @Override
+    public void getPersonTeamshouyi2(PageBody pageBody, final Callback<PersonTeamShouyi> callback) {
+        ApiWrapper apiWrapper = new ApiWrapper();
+        Subscription subscription = apiWrapper.getPersonTeamshouyi2(pageBody)
+                .subscribe(new NewSubscriber<PersonTeamShouyi>(context, true) {
+                    @Override
+                    public void onNext(PersonTeamShouyi pager) {
+                        callback.onSuccess(pager);
+                    }
+
+                    @Override
+                    protected void onError(ApiException ex) {
+                        super.onError(ex);
+                        callback.onFailure(ex.getCode(), ex.getErrMessage());
+                    }
+                });
+        addSubscrebe(subscription);
+    }
+
+
+
 }

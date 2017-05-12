@@ -7,6 +7,7 @@ import java.io.Serializable;
  */
 
 public class SubSpeakBody implements Serializable {
+
     public String userId;
     public String productId;
     public String orderInfoId;

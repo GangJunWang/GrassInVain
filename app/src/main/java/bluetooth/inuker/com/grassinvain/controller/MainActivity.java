@@ -23,18 +23,23 @@ import java.util.List;
 import bluetooth.inuker.com.grassinvain.R;
 import bluetooth.inuker.com.grassinvain.base.BaseActivity;
 import bluetooth.inuker.com.grassinvain.common.cache.CacheCenter;
+import bluetooth.inuker.com.grassinvain.common.model.OssAuth;
 import bluetooth.inuker.com.grassinvain.common.util.CommonUtil;
 import bluetooth.inuker.com.grassinvain.common.util.MConstants;
 import bluetooth.inuker.com.grassinvain.common.widget.MyDialog;
 import bluetooth.inuker.com.grassinvain.common.widget.SlidingMenu;
 import bluetooth.inuker.com.grassinvain.controller.activity.AboutUs;
 import bluetooth.inuker.com.grassinvain.controller.activity.SystemSetting;
+import bluetooth.inuker.com.grassinvain.controller.activity.UpLoadFileActivity;
 import bluetooth.inuker.com.grassinvain.controller.fragment.HomeFragment;
 import bluetooth.inuker.com.grassinvain.controller.fragment.MessageFragment;
 import bluetooth.inuker.com.grassinvain.controller.fragment.PersonCenterFragment;
 import bluetooth.inuker.com.grassinvain.controller.fragment.ShoppingFragment;
 import bluetooth.inuker.com.grassinvain.controller.login.LoginActivity;
 import bluetooth.inuker.com.grassinvain.controller.personinformation.ChangePersonInformation;
+import bluetooth.inuker.com.grassinvain.network.body.UserInfo;
+import bluetooth.inuker.com.grassinvain.network.model.UserModel;
+import bluetooth.inuker.com.grassinvain.network.model.callback.Callback;
 
 
 public class MainActivity extends BaseActivity {
@@ -57,6 +62,9 @@ public class MainActivity extends BaseActivity {
     private String gooddetails;
     private String imagePath;
     private ShoppingFragment shoppingFragment;
+    private UserModel userModel;
+    //盛放图片地址
+    private List<String> picdata = new ArrayList<>();
 
     @Override
     public void widgetClick(View v) {
@@ -251,6 +259,7 @@ public class MainActivity extends BaseActivity {
     @Override
     public void initView(View view) {
 
+        userModel = new UserModel(this);
         Intent intent = getIntent();
         gooddetails = intent.getStringExtra("GOODDETAILS");
         mMenu = (SlidingMenu) view.findViewById(R.id.activity_main);
@@ -366,7 +375,7 @@ public class MainActivity extends BaseActivity {
      * 当购物车没有商品时切换到首页选择商品进行购买
      */
 
-    public  void   changeFragment() {
+    public void changeFragment() {
         cehuaitem2image.setImageResource(R.mipmap.gouwucheweixuan);
         cehuaitem2text.setTextColor(this.getResources().getColor(R.color.write));
         cehuaitem2xian.setVisibility(View.INVISIBLE);
@@ -406,13 +415,52 @@ public class MainActivity extends BaseActivity {
                             e.printStackTrace();
                         }
                     }
-
                     if (file != null) {
-                        ((PersonCenterFragment) (fragmentList.get(2))).setImageIdcard(file.toString());
+                        ossAuth(file.getPath());
                     }
+                }
+            } else if (requestCode == MConstants.REQUESTCODE_UPLOAD) {
+
+                if (data.hasExtra(UpLoadFileActivity.KEY_RESULT_URL)) {
+                    final String url = data.getStringExtra(UpLoadFileActivity.KEY_RESULT_URL);
+                    //添加图片地址到数组里，一块上传的后台
+                    picdata.add(url);
+                    UserInfo userInfo = new UserInfo();
+                    userInfo.avatarUrl = url;
+                    userModel.getUpdateUser(userInfo, new Callback<Object>() {
+                        @Override
+                        public void onSuccess(Object o) {
+                            Toast.makeText(getBaseContext(),"更新成功，等待审核",Toast.LENGTH_SHORT).show();
+                        }
+                        @Override
+                        public void onFailure(int resultCode, String message) {
+
+                        }
+                    });
                 }
             }
         }
+    }
+
+    /**
+     * 上传头像
+     */
+    public void ossAuth(final String filePath) {
+        userModel.ossAuth(MConstants.UPLOAD_TYPE_AVATAR, new Callback<OssAuth>() {
+            @Override
+            public void onSuccess(OssAuth ossAuth) {
+                //调用上传
+                Intent intent = new Intent(MainActivity.this, UpLoadFileActivity.class);
+                intent.putExtra(UpLoadFileActivity.KEY_OSSAUTH, ossAuth);
+                intent.putExtra(UpLoadFileActivity.KEY_FILEPATH, filePath);
+                intent.putExtra(UpLoadFileActivity.KEY_SHOW_UPLOAD_PROGRESS, false);
+                startActivityForResult(intent, MConstants.REQUESTCODE_UPLOAD);
+            }
+            @Override
+            public void onFailure(int resultCode, String message) {
+                Toast.makeText(getBaseContext(), "请求失败", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 

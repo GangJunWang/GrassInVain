@@ -54,8 +54,13 @@ public class WaitPayFragmentAdapter extends SuperAdapter<AllOrderfirstBody> {
          */
         RecyclerView recyclerView = holder.findViewById(R.id.recyclerView);
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false){
+            @Override
+            public boolean canScrollHorizontally() {
+                return false;
+            }
+        };
+        recyclerView.setLayoutManager(linearLayoutManager);
         List<AllOrdersecondBody> orderInfoList = item.orderInfoList;
 
         WaitPayAdapter adapter = new WaitPayAdapter(getContext(), orderInfoList, R.layout.order_list_contont);

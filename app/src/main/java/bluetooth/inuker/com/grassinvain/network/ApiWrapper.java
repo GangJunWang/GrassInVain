@@ -19,6 +19,7 @@ import bluetooth.inuker.com.grassinvain.network.body.response.MorenAddressBody;
 import bluetooth.inuker.com.grassinvain.network.body.response.NewMessageBody;
 import bluetooth.inuker.com.grassinvain.network.body.response.PageBody;
 import bluetooth.inuker.com.grassinvain.network.body.response.PersonShouyiZhangdanBody;
+import bluetooth.inuker.com.grassinvain.network.body.response.PersonTeamShouyi;
 import bluetooth.inuker.com.grassinvain.network.body.response.ProductBody;
 import bluetooth.inuker.com.grassinvain.network.body.response.ProductSDeatilBody;
 import bluetooth.inuker.com.grassinvain.network.body.response.ProductSpeakList;
@@ -379,6 +380,24 @@ public class ApiWrapper {
     public Observable<Object> getSubSpeak(SubSpeakBody subSpeakBody) {
         return RetrofitManager.getInstance().getUserService().getSubSpeak(subSpeakBody)
                 .compose(this.<Object>applySchedulers());
+    }
+
+    /**
+     * 个人收益列表
+     */
+
+    public Observable<PersonTeamShouyi> getPersonTeamshouyi(PageBody pageBody) {
+        return RetrofitManager.getInstance().getUserService().getPersonTeamshouyi(pageBody)
+                .compose(this.<PersonTeamShouyi>applySchedulers());
+    }
+
+    /**
+     * 团队收益列表
+     */
+
+    public Observable<PersonTeamShouyi> getPersonTeamshouyi2(PageBody pageBody) {
+        return RetrofitManager.getInstance().getUserService().getPersonTeamshouyi2(pageBody)
+                .compose(this.<PersonTeamShouyi>applySchedulers());
     }
 
     /**

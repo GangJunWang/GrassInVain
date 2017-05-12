@@ -19,6 +19,7 @@ import bluetooth.inuker.com.grassinvain.network.body.response.MorenAddressBody;
 import bluetooth.inuker.com.grassinvain.network.body.response.NewMessageBody;
 import bluetooth.inuker.com.grassinvain.network.body.response.PageBody;
 import bluetooth.inuker.com.grassinvain.network.body.response.PersonShouyiZhangdanBody;
+import bluetooth.inuker.com.grassinvain.network.body.response.PersonTeamShouyi;
 import bluetooth.inuker.com.grassinvain.network.body.response.ProductBody;
 import bluetooth.inuker.com.grassinvain.network.body.response.ProductSDeatilBody;
 import bluetooth.inuker.com.grassinvain.network.body.response.ProductSpeakList;
@@ -110,4 +111,9 @@ public interface IUserModel {
     void getproductSpeaklist(String orderNo, Callback<ProductSpeakList> callback);
 
     void getSubSpeak(SubSpeakBody subSpeakBody, Callback<Object> callback);
+
+
+    void getPersonTeamshouyi(PageBody pageBody, Callback<PersonTeamShouyi> callback);
+
+    void getPersonTeamshouyi2(PageBody pageBody, Callback<PersonTeamShouyi> callback);
 }

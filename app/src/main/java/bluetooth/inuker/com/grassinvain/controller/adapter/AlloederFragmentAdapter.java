@@ -23,6 +23,7 @@ public class AlloederFragmentAdapter extends SuperAdapter<AllOrderfirstBody> {
 
     private TextView button1;
     private TextView button2;
+
     /**
      * Constructor for single itemView type.
      *
@@ -50,8 +51,15 @@ public class AlloederFragmentAdapter extends SuperAdapter<AllOrderfirstBody> {
          */
         RecyclerView recyclerView = holder.findViewById(R.id.recyclerView);
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
 
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false) {
+            @Override
+            public boolean canScrollHorizontally() {
+                return false;
+            }
+        };
+
+        recyclerView.setLayoutManager(linearLayoutManager);
         List<AllOrdersecondBody> orderInfoList = item.orderInfoList;
 
         WaitPayAdapter adapter = new WaitPayAdapter(getContext(), orderInfoList, R.layout.order_list_contont);
@@ -68,32 +76,33 @@ public class AlloederFragmentAdapter extends SuperAdapter<AllOrderfirstBody> {
             button2.setVisibility(View.VISIBLE);
             button1.setText("查看物流");
             button2.setText("确认收货");
-            initOnclick(button1,button2,layoutPosition,item);
-        }else if ("DPJ".equals(item.status)) {
+            initOnclick(button1, button2, layoutPosition, item);
+        } else if ("DPJ".equals(item.status)) {
             button2.setVisibility(View.VISIBLE);
             button1.setText("去评价");
             button2.setText("删除订单");
-            initOnclick(button1,button2,layoutPosition,item);
-        }else if ("PAY".equals(item.status)) {
+            initOnclick(button1, button2, layoutPosition, item);
+        } else if ("PAY".equals(item.status)) {
             button2.setVisibility(View.VISIBLE);
             button1.setText("取消订单");
             button2.setText("去付款");
-            initOnclick(button1,button2,layoutPosition,item);
-        }else if ("YPJ".equals(item.status)) {
+            initOnclick(button1, button2, layoutPosition, item);
+        } else if ("YPJ".equals(item.status)) {
             button2.setVisibility(View.GONE);
             button1.setText("已评价");
-        }else if ("FAL".equals(item.status)) {
+        } else if ("FAL".equals(item.status)) {
             button2.setVisibility(View.GONE);
             button1.setText("已取消");
         }
     }
+
     private void initOnclick(final TextView button1, final TextView button2, final int layoutPosition, final AllOrderfirstBody item) {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (null != chooseType) {
                     chooseType.choosebutton1(layoutPosition, button1.getText().toString(), item.orderNo);
-                    System.out.println(button1.getText().toString()+layoutPosition);
+                    System.out.println(button1.getText().toString() + layoutPosition);
                 }
             }
         });
@@ -103,7 +112,7 @@ public class AlloederFragmentAdapter extends SuperAdapter<AllOrderfirstBody> {
 
                 if (null != chooseType) {
                     chooseType.choosebutton2(layoutPosition, button2.getText().toString(), item.orderNo);
-                    System.out.println(button2.getText().toString()+layoutPosition);
+                    System.out.println(button2.getText().toString() + layoutPosition);
                 }
             }
         });

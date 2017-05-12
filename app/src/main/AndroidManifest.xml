@@ -84,6 +84,7 @@
         <activity android:name=".controller.activity.personactivity.ChangeNameActivity" />
         <!-- 改变用户性别 -->
         <activity android:name=".controller.activity.personactivity.ChangeGenderActivity" />
+
         <activity android:name=".controller.activity.Submitorder" />
         <!-- 收货地址 -->
         <activity android:name=".controller.personinformation.TheGoodsAddress" />
@@ -97,7 +98,8 @@
         <activity android:name=".controller.activity.personactivity.UserBankActivity" />
         <!-- 物流详情 -->
         <activity android:name=".controller.activity.personactivity.WuliuActivity" />
-        <activity android:name=".controller.activity.ProductSpexkActivity"></activity>
+        <!--产品评价-->
+        <activity android:name=".controller.activity.ProductSpexkActivity"/>
     </application>
 
 </manifest>

@@ -9,11 +9,10 @@ import bluetooth.inuker.com.grassinvain.common.util.MConstants;
 public class Response<T> {
 
     public String resultCode;
-    public T result;//商秀接口返回
+    public T result;
     public String errorMsg;
 
-
-    public T results;//妹纸图返回数据
+    public T results;
 
     public boolean isSuccess() {
         if (resultCode != null) {

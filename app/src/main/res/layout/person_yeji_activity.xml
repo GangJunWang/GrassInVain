@@ -12,6 +12,7 @@
         android:padding="5dp">
 
         <TextView
+            android:id="@+id/month"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#666"
@@ -19,6 +20,7 @@
             android:text="本月业绩" />
 
         <TextView
+            android:id="@+id/monery"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -55,7 +57,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="10dp"
                 android:textSize="12dp"
-                android:text="+333"/>
+                android:text="+000"/>
 
         </RelativeLayout>
 
@@ -83,7 +85,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="10dp"
                 android:textSize="12dp"
-                android:text="+333"/>
+                android:text="+000"/>
 
         </RelativeLayout>
     </LinearLayout>

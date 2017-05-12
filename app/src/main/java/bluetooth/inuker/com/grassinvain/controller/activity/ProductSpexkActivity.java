@@ -61,30 +61,31 @@ public class ProductSpexkActivity extends AppCompatActivity implements SubmitSpe
         pruduct_speak_list.setAdapter(productcontontListAdapter);
         productcontontListAdapter.setInstall(ProductSpexkActivity.this);
 
-
         // 提交评价
         LinearLayout speak = (LinearLayout) findViewById(R.id.speak);
         speak.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 for (int i = 0; i < data.size(); i++) {
-                    SubSpeakBody subSpeakBody = new SubSpeakBody();
-                    subSpeakBody.evaluateContent = data.get(i).contont;
-                    userModel.getSubSpeak(subSpeakBody, new Callback<Object>() {
-                        @Override
-                        public void onSuccess(Object o) {
+                    if ("".equals(data.get(i).contont) || null == data.get(i).contont){
+                        Toast.makeText(getBaseContext(),"请填写完整评价",Toast.LENGTH_SHORT).show();
+                    }else {
+                        SubSpeakBody subSpeakBody = new SubSpeakBody();
+                        subSpeakBody.evaluateContent = data.get(i).contont;
+                        userModel.getSubSpeak(subSpeakBody, new Callback<Object>() {
+                            @Override
+                            public void onSuccess(Object o) {
+                                Toast.makeText(getBaseContext(), "提交成功", Toast.LENGTH_SHORT).show();
+                                finish();
+                            }
+                            @Override
+                            public void onFailure(int resultCode, String message) {
+                            }
+                        });
+                    }
 
-                        }
-
-                        @Override
-                        public void onFailure(int resultCode, String message) {
-
-                        }
-                    });
                 }
-
-                Toast.makeText(getBaseContext(), "提交成功", Toast.LENGTH_SHORT).show();
-
             }
         });
     }
