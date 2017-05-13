@@ -6,6 +6,7 @@ import java.util.List;
 import bluetooth.inuker.com.grassinvain.common.model.OssAuth;
 import bluetooth.inuker.com.grassinvain.network.body.UserInfo;
 import bluetooth.inuker.com.grassinvain.network.body.request.AddAdressBody;
+import bluetooth.inuker.com.grassinvain.network.body.request.AddbankCardBody;
 import bluetooth.inuker.com.grassinvain.network.body.request.JoinShoppingCarBody;
 import bluetooth.inuker.com.grassinvain.network.body.request.SubSpeakBody;
 import bluetooth.inuker.com.grassinvain.network.body.request.SubmitOrderBody;
@@ -116,4 +117,6 @@ public interface IUserModel {
     void getPersonTeamshouyi(PageBody pageBody, Callback<PersonTeamShouyi> callback);
 
     void getPersonTeamshouyi2(PageBody pageBody, Callback<PersonTeamShouyi> callback);
+
+    void getAddBankCard(AddbankCardBody addbankCardBody, Callback<Object> callback);
 }

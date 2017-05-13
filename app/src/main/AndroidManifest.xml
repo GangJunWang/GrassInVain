@@ -38,17 +38,16 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".controller.MainActivity">
+        <activity android:name=".controller.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!-- <activity android:name=".controller.MainActivity"/> -->
+        <activity android:name=".controller.MainActivity" />
         <activity android:name=".controller.login.LoginActivity" />
         <activity android:name=".controller.login.RegisteredActivity" />
-        <activity android:name=".controller.SplashActivity" />
         <activity android:name=".controller.login.ForgetPwdActivity" />
         <activity android:name=".controller.personinformation.ChangePersonInformation" />
         <!-- <activity android:name=".controller.TextActivity"></activity> -->
@@ -84,7 +83,6 @@
         <activity android:name=".controller.activity.personactivity.ChangeNameActivity" />
         <!-- 改变用户性别 -->
         <activity android:name=".controller.activity.personactivity.ChangeGenderActivity" />
-
         <activity android:name=".controller.activity.Submitorder" />
         <!-- 收货地址 -->
         <activity android:name=".controller.personinformation.TheGoodsAddress" />
@@ -98,8 +96,9 @@
         <activity android:name=".controller.activity.personactivity.UserBankActivity" />
         <!-- 物流详情 -->
         <activity android:name=".controller.activity.personactivity.WuliuActivity" />
-        <!--产品评价-->
-        <activity android:name=".controller.activity.ProductSpexkActivity"/>
+        <!-- 产品评价 -->
+        <activity android:name=".controller.activity.ProductSpexkActivity" />
+        <activity android:name=".controller.activity.personactivity.AddUserBank"></activity>
     </application>
 
 </manifest>

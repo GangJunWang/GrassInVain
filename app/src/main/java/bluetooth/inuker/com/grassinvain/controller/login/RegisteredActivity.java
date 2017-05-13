@@ -3,24 +3,31 @@ package bluetooth.inuker.com.grassinvain.controller.login;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.File;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.List;
 
 import bluetooth.inuker.com.grassinvain.R;
+import bluetooth.inuker.com.grassinvain.common.model.OssAuth;
 import bluetooth.inuker.com.grassinvain.common.util.CommonUtil;
 import bluetooth.inuker.com.grassinvain.common.util.MConstants;
+import bluetooth.inuker.com.grassinvain.common.widget.MySuccessDialog;
+import bluetooth.inuker.com.grassinvain.controller.activity.UpLoadFileActivity;
 import bluetooth.inuker.com.grassinvain.controller.fragment.RegisFragmentOne;
 import bluetooth.inuker.com.grassinvain.controller.fragment.RegisFragmentTwe;
 import bluetooth.inuker.com.grassinvain.controller.fragment.RegisFragmentthree;
@@ -30,7 +37,6 @@ import bluetooth.inuker.com.grassinvain.network.model.UserModel;
 import bluetooth.inuker.com.grassinvain.network.model.callback.Callback;
 
 public class RegisteredActivity extends FragmentActivity implements View.OnClickListener {
-
 
 
     private ViewPager regis_viewpager;
@@ -44,6 +50,8 @@ public class RegisteredActivity extends FragmentActivity implements View.OnClick
     private ImageView regisBack;
     private String imagePath;
     private UserModel userModel;
+    //盛放图片地址
+    private List<String> picdata = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +63,15 @@ public class RegisteredActivity extends FragmentActivity implements View.OnClick
     }
 
     private void initView() {
+
+        // 注册按钮
+        Button regidtered = (Button) findViewById(R.id.regidtered);
+        regidtered.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getBaseContext(), "呵呵呵呵呵", Toast.LENGTH_SHORT).show();
+            }
+        });
         /**
          * 返回事件
          */
@@ -78,7 +95,7 @@ public class RegisteredActivity extends FragmentActivity implements View.OnClick
         startZhuce.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Toast.makeText(getBaseContext(), "呵呵呵呵呵", Toast.LENGTH_SHORT).show();
                 String yanzhengmaString = ((RegisFragmentOne) fragment.get(0)).getTuijianrenString();
                 String zijirenString = ((RegisFragmentOne) fragment.get(0)).getZijirenString();
                 String tuijianrenString = ((RegisFragmentOne) fragment.get(0)).getYanzhengmaString();
@@ -87,8 +104,6 @@ public class RegisteredActivity extends FragmentActivity implements View.OnClick
                 String querenmimaString = ((RegisFragmentTwe) fragment.get(1)).getQuerenmimaString();
 
                 String personIdCardString = ((RegisFragmentthree) fragment.get(2)).getPersonIdCardString();
-
-
                 perform();
             }
         });
@@ -109,6 +124,7 @@ public class RegisteredActivity extends FragmentActivity implements View.OnClick
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
             }
+
             @Override
             public void onPageSelected(int position) {
                 if (0 == position) {
@@ -125,7 +141,7 @@ public class RegisteredActivity extends FragmentActivity implements View.OnClick
 
                     if (null == yanzhengmaString || null == tuijianrenString || null == zijirenString) {
                         lunboDot1.setBackgroundResource(R.drawable.icon_back_write);
-                    }else {
+                    } else {
                         lunboDot1.setBackgroundResource(R.mipmap.regisok);
                     }
                     lunboDot2.setBackgroundResource(R.drawable.icon_back_blue);
@@ -139,14 +155,14 @@ public class RegisteredActivity extends FragmentActivity implements View.OnClick
                     String tuijianrenString = ((RegisFragmentOne) fragment.get(0)).getYanzhengmaString();
                     String shurumimaString = ((RegisFragmentTwe) fragment.get(1)).getShurumimaString();
                     String querenmimaString = ((RegisFragmentTwe) fragment.get(1)).getQuerenmimaString();
-                    if (null == shurumimaString || null == querenmimaString){
+                    if (null == shurumimaString || null == querenmimaString) {
                         lunboDot2.setBackgroundResource(R.drawable.icon_back_write);
-                    }else {
+                    } else {
                         lunboDot2.setBackgroundResource(R.mipmap.regisok);
                     }
                     if (null == yanzhengmaString || null == tuijianrenString || null == zijirenString) {
                         lunboDot1.setBackgroundResource(R.drawable.icon_back_write);
-                    }else {
+                    } else {
                         lunboDot1.setBackgroundResource(R.mipmap.regisok);
                     }
 
@@ -154,6 +170,7 @@ public class RegisteredActivity extends FragmentActivity implements View.OnClick
                     lunboDot3.setBackgroundResource(R.drawable.icon_back_blue);
                 }
             }
+
             @Override
             public void onPageScrollStateChanged(int state) {
             }
@@ -161,7 +178,7 @@ public class RegisteredActivity extends FragmentActivity implements View.OnClick
     }
 
     /**
-     *  发起  注册请求
+     * 发起  注册请求
      */
     private void perform() {
 
@@ -170,12 +187,30 @@ public class RegisteredActivity extends FragmentActivity implements View.OnClick
         userModel.register(userBody, new Callback<UserInfo>() {
             @Override
             public void onSuccess(UserInfo userInfo) {
-
+                MySuccessDialog mySuccessDialog = new MySuccessDialog(RegisteredActivity.this, R.style.Dialog);
+                mySuccessDialog.show();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent intent = new Intent(RegisteredActivity.this, LoginActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                }, 2000);
             }
 
             @Override
             public void onFailure(int resultCode, String message) {
-
+                MySuccessDialog mySuccessDialog = new MySuccessDialog(RegisteredActivity.this, R.style.Dialog);
+                mySuccessDialog.show();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent intent = new Intent(RegisteredActivity.this, LoginActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                }, 2000);
             }
         });
 
@@ -184,7 +219,7 @@ public class RegisteredActivity extends FragmentActivity implements View.OnClick
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.Regis_back:
                 finish();
                 break;
@@ -219,7 +254,6 @@ public class RegisteredActivity extends FragmentActivity implements View.OnClick
         }
     }
 
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -241,14 +275,58 @@ public class RegisteredActivity extends FragmentActivity implements View.OnClick
                             e.printStackTrace();
                         }
                     }
-
                     if (file != null) {
-
-                        ((RegisFragmentthree)(fragment.get(2))).setImageIdcard(imagePath);
-
+                        ((RegisFragmentthree) (fragment.get(2))).setImageIdcard(imagePath);
+                        ossAuth(file.getPath());
                     }
+                }
+            } else if (requestCode == MConstants.REQUESTCODE_UPLOAD) {
+
+                if (data.hasExtra(UpLoadFileActivity.KEY_RESULT_URL)) {
+                    final String url = data.getStringExtra(UpLoadFileActivity.KEY_RESULT_URL);
+                    //添加图片地址到数组里，一块上传的后台
+                    picdata.add(url);
+                    final UserInfo userInfo = new UserInfo();
+                    userInfo.avatarUrl = url;
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            userModel.getUpdateUser(userInfo, new Callback<Object>() {
+                                @Override
+                                public void onSuccess(Object o) {
+                                    Toast.makeText(getBaseContext(), "更新成功，等待审核", Toast.LENGTH_SHORT).show();
+                                }
+                                @Override
+                                public void onFailure(int resultCode, String message) {
+                                }
+                            });
+                        }
+                    }, 2000);
+
                 }
             }
         }
     }
+    /**
+     * 上传头像
+     */
+    public void ossAuth(final String filePath) {
+        userModel.ossAuth(MConstants.UPLOAD_TYPE_AVATAR, new Callback<OssAuth>() {
+            @Override
+            public void onSuccess(OssAuth ossAuth) {
+                //调用上传
+                Intent intent = new Intent(RegisteredActivity.this, UpLoadFileActivity.class);
+                intent.putExtra(UpLoadFileActivity.KEY_OSSAUTH, ossAuth);
+                intent.putExtra(UpLoadFileActivity.KEY_FILEPATH, filePath);
+                intent.putExtra(UpLoadFileActivity.KEY_SHOW_UPLOAD_PROGRESS, false);
+                startActivityForResult(intent, MConstants.REQUESTCODE_UPLOAD);
+            }
+
+            @Override
+            public void onFailure(int resultCode, String message) {
+                Toast.makeText(getBaseContext(), "请求失败", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
 }

@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -425,18 +426,25 @@ public class MainActivity extends BaseActivity {
                     final String url = data.getStringExtra(UpLoadFileActivity.KEY_RESULT_URL);
                     //添加图片地址到数组里，一块上传的后台
                     picdata.add(url);
-                    UserInfo userInfo = new UserInfo();
+                    final UserInfo userInfo = new UserInfo();
                     userInfo.avatarUrl = url;
-                    userModel.getUpdateUser(userInfo, new Callback<Object>() {
+                    new Handler().postDelayed(new Runnable() {
                         @Override
-                        public void onSuccess(Object o) {
-                            Toast.makeText(getBaseContext(),"更新成功，等待审核",Toast.LENGTH_SHORT).show();
-                        }
-                        @Override
-                        public void onFailure(int resultCode, String message) {
+                        public void run() {
+                            userModel.getUpdateUser(userInfo, new Callback<Object>() {
+                                @Override
+                                public void onSuccess(Object o) {
+                                    Toast.makeText(getBaseContext(), "更新成功，等待审核", Toast.LENGTH_SHORT).show();
+                                }
 
+                                @Override
+                                public void onFailure(int resultCode, String message) {
+
+                                }
+                            });
                         }
-                    });
+                    }, 2000);
+
                 }
             }
         }
@@ -456,6 +464,7 @@ public class MainActivity extends BaseActivity {
                 intent.putExtra(UpLoadFileActivity.KEY_SHOW_UPLOAD_PROGRESS, false);
                 startActivityForResult(intent, MConstants.REQUESTCODE_UPLOAD);
             }
+
             @Override
             public void onFailure(int resultCode, String message) {
                 Toast.makeText(getBaseContext(), "请求失败", Toast.LENGTH_SHORT).show();

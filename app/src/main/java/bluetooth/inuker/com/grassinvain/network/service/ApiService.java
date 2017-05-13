@@ -7,6 +7,7 @@ import bluetooth.inuker.com.grassinvain.common.model.OssAuth;
 import bluetooth.inuker.com.grassinvain.network.body.UserInfo;
 import bluetooth.inuker.com.grassinvain.network.body.request.AddAdressBody;
 import bluetooth.inuker.com.grassinvain.network.body.request.AddCardentry;
+import bluetooth.inuker.com.grassinvain.network.body.request.AddbankCardBody;
 import bluetooth.inuker.com.grassinvain.network.body.request.JoinShoppingCarBody;
 import bluetooth.inuker.com.grassinvain.network.body.request.SubSpeakBody;
 import bluetooth.inuker.com.grassinvain.network.body.request.SubmitOrderBody;
@@ -297,5 +298,12 @@ public interface ApiService {
      */
     @POST("/accounts/getTeamPerformancePage/0")
     Observable<Response<PersonTeamShouyi>> getPersonTeamshouyi2(@Body PageBody pageBody);
+
+    /**
+     * 添加银行卡
+     */
+
+    @POST("/products/addProductEvaluate/0")
+    Observable<Response<Object>> getAddBankCard(@Body AddbankCardBody addbankCardBody);
 }
 

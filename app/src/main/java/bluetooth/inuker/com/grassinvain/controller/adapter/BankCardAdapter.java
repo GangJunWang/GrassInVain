@@ -12,6 +12,7 @@ import com.shaojun.widget.superAdapter.internal.SuperViewHolder;
 import java.util.List;
 
 import bluetooth.inuker.com.grassinvain.R;
+import bluetooth.inuker.com.grassinvain.controller.interfaces.ChoseBank;
 import bluetooth.inuker.com.grassinvain.network.body.response.BankCardChiredBody;
 
 /**
@@ -22,6 +23,13 @@ public class BankCardAdapter extends SuperAdapter<BankCardChiredBody> {
 
     private ImageView bianji_bankcard;
 
+    /**
+     * 声明接口
+     */
+    private ChoseBank choseBank;
+    public void setbankchange(ChoseBank choseBank) {
+        this.choseBank = choseBank;
+    }
     /**
      * Constructor for single itemView type.
      *
@@ -34,7 +42,7 @@ public class BankCardAdapter extends SuperAdapter<BankCardChiredBody> {
     }
 
     @Override
-    public void onBind(SuperViewHolder holder, int viewType, int layoutPosition, final BankCardChiredBody item) {
+    public void onBind(SuperViewHolder holder, int viewType, final int layoutPosition, final BankCardChiredBody item) {
 
         TextView bank_number = holder.findViewById(R.id.textView20);
         bank_number.setText(item.cardCode);
@@ -46,21 +54,24 @@ public class BankCardAdapter extends SuperAdapter<BankCardChiredBody> {
         bank_cardView.setContentPadding(15, 15, 15, 15);//设置图片距离阴影大小
         bank_cardView.setBackgroundResource(R.mipmap.bankbackground);
         bianji_bankcard = holder.findViewById(R.id.bianji_bankcard);
+        if (item.isCheck){
+            bianji_bankcard.setImageResource(R.mipmap.xuanzhong);
+        }
+        if (!item.isCheck){
+            bianji_bankcard.setImageResource(R.mipmap.weixuan);
+        }
         if (item.isClick) {
             bianji_bankcard.setVisibility(View.VISIBLE);
-        }else {
+        } else {
             bianji_bankcard.setVisibility(View.GONE);
         }
-
         bianji_bankcard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (item.isCheck) {
-                    bianji_bankcard.setImageResource(R.mipmap.weixuan);
-                    item.isCheck = false;
+                    choseBank.setbank(layoutPosition, !item.isCheck);
                 } else {
-                    bianji_bankcard.setImageResource(R.mipmap.xuanzhong);
-                    item.isCheck = true;
+                    choseBank.setbank(layoutPosition, !item.isCheck);
                 }
             }
         });

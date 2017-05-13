@@ -32,6 +32,7 @@ public class SplashActivity extends BaseActivity {
 
     @Override
     public void initView(View view) {
+
     }
 
     @Override
@@ -46,7 +47,7 @@ public class SplashActivity extends BaseActivity {
             public void run() {
                 startActivity(MainActivity.class);
             }
-        }, 3000);
+        }, 1000);
 
     }
 }

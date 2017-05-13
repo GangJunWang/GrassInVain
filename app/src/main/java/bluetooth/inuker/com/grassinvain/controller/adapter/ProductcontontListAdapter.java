@@ -31,6 +31,7 @@ public class ProductcontontListAdapter extends SuperAdapter<AllOrdersecondBody> 
     public void setInstall(SubmitSpeak install) {
         this.install = install;
     }
+
     private Context context;
 
     /**

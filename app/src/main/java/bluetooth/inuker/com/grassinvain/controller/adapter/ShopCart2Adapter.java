@@ -149,7 +149,7 @@ public class ShopCart2Adapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 .placeholder(R.mipmap.morenproduct).into(((ShopCartViewHolder) holder).shop_tupian);
         ((ShopCartViewHolder) holder).shop_guige.setText(list.get(position).formatName);
         ((ShopCartViewHolder) holder).shop_num.setText(list.get(position).count);
-        ((ShopCartViewHolder) holder).shop_jiage.setText(list.get(position).formatPrice);
+        ((ShopCartViewHolder) holder).shop_jiage.setText(list.get(position).formatPrice.substring(0,list.get(position).formatPrice.length()-2));
         ((ShopCartViewHolder) holder).shop_title.setText(list.get(position).productName);
 
         ((ShopCartViewHolder) holder).shop_add.setOnClickListener(new View.OnClickListener() {

@@ -18,6 +18,9 @@ import bluetooth.inuker.com.grassinvain.common.util.TextUtil;
 import bluetooth.inuker.com.grassinvain.common.util.ToastUtil;
 import bluetooth.inuker.com.grassinvain.common.widget.MyEditText;
 import bluetooth.inuker.com.grassinvain.common.widget.MySuccessDialog;
+import bluetooth.inuker.com.grassinvain.network.model.RequestModel.UserBody;
+import bluetooth.inuker.com.grassinvain.network.model.UserModel;
+import bluetooth.inuker.com.grassinvain.network.model.callback.Callback;
 
 public class ForgetPwdActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -32,11 +35,14 @@ public class ForgetPwdActivity extends AppCompatActivity implements View.OnClick
     private int time = 60;
     private LinearLayout activityForget;
     private ImageView forgetBack;
+    private UserModel userModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forget_pwd);
+        userModel = new UserModel(this);
+
         initView();
     }
 
@@ -59,13 +65,24 @@ public class ForgetPwdActivity extends AppCompatActivity implements View.OnClick
     public void onClick(View view) {
 
         switch (view.getId()) {
-
             case R.id.forget_back:
                 finish();
                 break;
             case R.id.forget_send_yanzhegnma:
-                if (null != forgetPonemunber) {
+                if ("".equals(forgetPonemunber.getText().toString())) {
                     countdown();
+                    UserBody userBody = new UserBody();
+                    userModel.smsCaptcha(userBody, new Callback<String>() {
+                        @Override
+                        public void onSuccess(String s) {
+
+                        }
+
+                        @Override
+                        public void onFailure(int resultCode, String message) {
+
+                        }
+                    });
                 } else {
                     ToastUtil.show(ForgetPwdActivity.this, "请输入手机号");
                 }
@@ -73,13 +90,13 @@ public class ForgetPwdActivity extends AppCompatActivity implements View.OnClick
 
             case R.id.forget_submit:
 
-
-
                 if (!"".equals(forgetPonemunber.getText().toString()) && !"".equals(forgetYanzhegnma.getText().toString())) {
 
                     boolean b = TextUtil.checkTwicePasswordIsEqual(ForgetPwdActivity.this, forgetFistpwd.getText().toString(), forgetSecond.getText().toString());
                     if (b) {
                         perform();
+
+
                     } else {
                         ToastUtil.show(ForgetPwdActivity.this, "两次输入的密码不一致");
                     }

@@ -6,6 +6,7 @@ import java.util.List;
 import bluetooth.inuker.com.grassinvain.common.model.OssAuth;
 import bluetooth.inuker.com.grassinvain.network.body.UserInfo;
 import bluetooth.inuker.com.grassinvain.network.body.request.AddAdressBody;
+import bluetooth.inuker.com.grassinvain.network.body.request.AddbankCardBody;
 import bluetooth.inuker.com.grassinvain.network.body.request.JoinShoppingCarBody;
 import bluetooth.inuker.com.grassinvain.network.body.request.SubSpeakBody;
 import bluetooth.inuker.com.grassinvain.network.body.request.SubmitOrderBody;
@@ -399,6 +400,15 @@ public class ApiWrapper {
         return RetrofitManager.getInstance().getUserService().getPersonTeamshouyi2(pageBody)
                 .compose(this.<PersonTeamShouyi>applySchedulers());
     }
+    /**
+     * 添加银行卡
+     */
+
+    public Observable<Object> getAddBankCard(AddbankCardBody addbankCardBody) {
+        return RetrofitManager.getInstance().getUserService().getAddBankCard(addbankCardBody)
+                .compose(this.<Object>applySchedulers());
+    }
+
 
     /**
      * http://www.jianshu.com/p/e9e03194199e

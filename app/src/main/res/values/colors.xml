@@ -86,7 +86,7 @@
     <color name="black_14">#9fb1be</color>
     <!-- 半透明黑色 -->
     <color name="black_trans">#cc000000</color>
-    <color name="black_trans_1">#9f000000</color>
+    <color name="black_trans_1">#44000000</color>
     <color name="black_transparent">#00ffffff</color>
     <!-- 公共弹出框背景颜色 -->
     <color name="black_dialog_backgroud">#77000000</color>

@@ -96,7 +96,11 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
             int price = parseInt(data.get(i).productFormatPrice);
             zongjai += (count*price);
         }
-        xuyao_zhifu_price.setText(zongjai + "");
+        String s = zongjai + "";
+        StringBuilder sb2 = new StringBuilder(s);
+        sb2.insert(s.length()-2,".");
+        String s1 = sb2.toString();
+        xuyao_zhifu_price.setText(s1);
         //添加横线 表示此价格无效
         xuyao_zhifu_price.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
         //商品实际需要付款的金额
@@ -126,7 +130,12 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                 buyProportion = userInfo.buyProportion;
                 huiyuan_zhuanxiang.setText(Integer.parseInt(buyProportion)*0.1 + "");
                 shijiprice = (int) (zongjai * Integer.parseInt(buyProportion)*0.1);
-                shiji_price.setText(shijiprice + "");
+                // 在后两位前插入小数点
+                String s = shijiprice + "";
+                StringBuilder  sb = new StringBuilder (shijiprice + "");
+                sb.insert(s.length()-2, ".");
+                String marStrNew = sb.toString();
+                shiji_price.setText(marStrNew);
             }
             @Override
             public void onFailure(int resultCode, String message) {

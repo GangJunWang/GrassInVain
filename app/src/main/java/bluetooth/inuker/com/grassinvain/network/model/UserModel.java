@@ -9,6 +9,7 @@ import bluetooth.inuker.com.grassinvain.common.model.OssAuth;
 import bluetooth.inuker.com.grassinvain.network.ApiWrapper;
 import bluetooth.inuker.com.grassinvain.network.body.UserInfo;
 import bluetooth.inuker.com.grassinvain.network.body.request.AddAdressBody;
+import bluetooth.inuker.com.grassinvain.network.body.request.AddbankCardBody;
 import bluetooth.inuker.com.grassinvain.network.body.request.JoinShoppingCarBody;
 import bluetooth.inuker.com.grassinvain.network.body.request.SubSpeakBody;
 import bluetooth.inuker.com.grassinvain.network.body.request.SubmitOrderBody;
@@ -100,7 +101,6 @@ public class UserModel extends BaseModel implements IUserModel {
                 .subscribe(new NewSubscriber<String>(context, false) {
                     @Override
                     public void onNext(String smsCaptcha) {
-
                         callback.onSuccess(smsCaptcha);
                     }
 
@@ -802,6 +802,7 @@ public class UserModel extends BaseModel implements IUserModel {
                 });
         addSubscrebe(subscription);
     }
+
     /**
      * 个人收益列表
      */
@@ -824,6 +825,7 @@ public class UserModel extends BaseModel implements IUserModel {
                 });
         addSubscrebe(subscription);
     }
+
     /**
      * 团队收益列表
      */
@@ -847,6 +849,28 @@ public class UserModel extends BaseModel implements IUserModel {
         addSubscrebe(subscription);
     }
 
+    /**
+     * 添加银行卡
+     */
+
+    @Override
+    public void getAddBankCard(AddbankCardBody addbankCardBody, final Callback<Object> callback) {
+        ApiWrapper apiWrapper = new ApiWrapper();
+        Subscription subscription = apiWrapper.getAddBankCard(addbankCardBody)
+                .subscribe(new NewSubscriber<Object>(context, true) {
+                    @Override
+                    public void onNext(Object pager) {
+                        callback.onSuccess(pager);
+                    }
+
+                    @Override
+                    protected void onError(ApiException ex) {
+                        super.onError(ex);
+                        callback.onFailure(ex.getCode(), ex.getErrMessage());
+                    }
+                });
+        addSubscrebe(subscription);
+    }
 
 
 }
