@@ -52,6 +52,8 @@ public interface IUserModel {
     void smsCaptcha(UserBody userBody, Callback<String> callback);
 
 
+    void restPwd(UserBody userBod, Callback<String> callback);
+
     void ossAuth(String mediaType, Callback<OssAuth> callback);
 
     void updateUserInfo(UserInfo userInfo, Callback<UserInfo> callback);

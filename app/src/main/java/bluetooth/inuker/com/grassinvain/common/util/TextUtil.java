@@ -17,6 +17,17 @@ import bluetooth.inuker.com.grassinvain.R;
 
 public class TextUtil {
 
+    /**
+     * 验证字符是否为空
+     */
+
+    public static boolean checkEmpty(String string) {
+        boolean flag = false;
+        if (!"".equals(string) && null != string){
+            flag = true;
+        }
+        return flag;
+    }
 
     /**
      * 正则校验
@@ -144,8 +155,36 @@ public class TextUtil {
      * 强制键盘隐藏或弹出
      */
 
-    public static void  setdissmiss(Context context){
+    public static void setdissmiss(Context context) {
         InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+    }
+
+
+    /**
+     * 比较真实完整的判断身份证号码的工具
+     *
+     * @param IdCard 用户输入的身份证号码
+     * @return [true符合规范, false不符合规范]
+     */
+    public static boolean isRealIDCard(String IdCard) {
+        if (IdCard != null) {
+            int correct = new IdCardUtil(IdCard).isCorrect();
+            if (0 == correct) {// 符合规范
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 在字符后边两位插入分隔符
+     */
+
+    public static String insertString(String string){
+        StringBuilder stringBuilder = new StringBuilder(string);
+        stringBuilder.insert(string.length()-2,".");
+        String s = stringBuilder.toString();
+        return s;
     }
 }

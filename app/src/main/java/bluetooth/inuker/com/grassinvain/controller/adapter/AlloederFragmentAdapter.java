@@ -12,6 +12,7 @@ import com.shaojun.widget.superAdapter.internal.SuperViewHolder;
 import java.util.List;
 
 import bluetooth.inuker.com.grassinvain.R;
+import bluetooth.inuker.com.grassinvain.common.util.TextUtil;
 import bluetooth.inuker.com.grassinvain.network.body.response.AllOrderfirstBody;
 import bluetooth.inuker.com.grassinvain.network.body.response.AllOrdersecondBody;
 
@@ -45,20 +46,24 @@ public class AlloederFragmentAdapter extends SuperAdapter<AllOrderfirstBody> {
         TextView time = holder.findViewById(R.id.time);
         time.setText(item.createAt);
         TextView hejiprice = holder.findViewById(R.id.textView25);
-        hejiprice.setText(item.amount);
+        if (TextUtil.checkEmpty(item.amount)) {
+            String amount = item.amount;
+            StringBuilder stringBuilder = new StringBuilder(amount);
+            stringBuilder.insert(amount.length() - 2, ".");
+            String s = stringBuilder.toString();
+            hejiprice.setText(s);
+        }
         /**
          * 子布局
          */
         RecyclerView recyclerView = holder.findViewById(R.id.recyclerView);
 
-
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false) {
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false) {
             @Override
             public boolean canScrollHorizontally() {
                 return false;
             }
         };
-
         recyclerView.setLayoutManager(linearLayoutManager);
         List<AllOrdersecondBody> orderInfoList = item.orderInfoList;
 

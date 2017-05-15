@@ -26,6 +26,7 @@ import bluetooth.inuker.com.grassinvain.R;
 import bluetooth.inuker.com.grassinvain.common.model.OssAuth;
 import bluetooth.inuker.com.grassinvain.common.util.CommonUtil;
 import bluetooth.inuker.com.grassinvain.common.util.MConstants;
+import bluetooth.inuker.com.grassinvain.common.util.TextUtil;
 import bluetooth.inuker.com.grassinvain.common.widget.MySuccessDialog;
 import bluetooth.inuker.com.grassinvain.controller.activity.UpLoadFileActivity;
 import bluetooth.inuker.com.grassinvain.controller.fragment.RegisFragmentOne;
@@ -53,6 +54,10 @@ public class RegisteredActivity extends FragmentActivity implements View.OnClick
     //盛放图片地址
     private List<String> picdata = new ArrayList<>();
 
+
+    //获取短信验证码接口返回
+    private String smsCaptchaToken = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,14 +69,9 @@ public class RegisteredActivity extends FragmentActivity implements View.OnClick
 
     private void initView() {
 
-        // 注册按钮
         Button regidtered = (Button) findViewById(R.id.regidtered);
-        regidtered.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getBaseContext(), "呵呵呵呵呵", Toast.LENGTH_SHORT).show();
-            }
-        });
+        regidtered.setOnClickListener(this);
+
         /**
          * 返回事件
          */
@@ -92,21 +92,7 @@ public class RegisteredActivity extends FragmentActivity implements View.OnClick
         /**
          * 注册按钮响应事件
          */
-        startZhuce.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getBaseContext(), "呵呵呵呵呵", Toast.LENGTH_SHORT).show();
-                String yanzhengmaString = ((RegisFragmentOne) fragment.get(0)).getTuijianrenString();
-                String zijirenString = ((RegisFragmentOne) fragment.get(0)).getZijirenString();
-                String tuijianrenString = ((RegisFragmentOne) fragment.get(0)).getYanzhengmaString();
-
-                String shurumimaString = ((RegisFragmentTwe) fragment.get(1)).getShurumimaString();
-                String querenmimaString = ((RegisFragmentTwe) fragment.get(1)).getQuerenmimaString();
-
-                String personIdCardString = ((RegisFragmentthree) fragment.get(2)).getPersonIdCardString();
-                perform();
-            }
-        });
+        startZhuce.setOnClickListener(this);
         regis_viewpager = (ViewPager) findViewById(R.id.regis_viewpager);
         fragment = new ArrayList<>();
         regisFragmentOne = new RegisFragmentOne();
@@ -177,14 +163,23 @@ public class RegisteredActivity extends FragmentActivity implements View.OnClick
         });
     }
 
-    /**
-     * 发起  注册请求
-     */
-    private void perform() {
+    private void perform(String zijirenString, String yanzhengmaString, String shurumimaString, String personIdCardString, String smsCaptchaToken) {
 
         UserBody userBody = new UserBody();
-
+        userBody.userMobile = zijirenString;
+        userBody.captcha = yanzhengmaString;
+        userBody.userPwd = shurumimaString;
+        userBody.captchaToken = smsCaptchaToken;
+        userBody.idCardNum = personIdCardString;
+        /**
+         * 身份证正反面的URI
+         */
+        userBody.idCardUrlZ = "";
+        userBody.idCardUrlF = "";
+        userBody.op = MConstants.SMSCAPTCHA_OP_REGISTER;
+        userBody.type = "0";
         userModel.register(userBody, new Callback<UserInfo>() {
+
             @Override
             public void onSuccess(UserInfo userInfo) {
                 MySuccessDialog mySuccessDialog = new MySuccessDialog(RegisteredActivity.this, R.style.Dialog);
@@ -217,11 +212,41 @@ public class RegisteredActivity extends FragmentActivity implements View.OnClick
 
     }
 
+
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.Regis_back:
                 finish();
+                break;
+            case R.id.regidtered:
+                String yanzhengmaString = ((RegisFragmentOne) fragment.get(0)).getTuijianrenString();
+                String zijirenString = ((RegisFragmentOne) fragment.get(0)).getZijirenString();
+                String tuijianrenString = ((RegisFragmentOne) fragment.get(0)).getYanzhengmaString();
+                String smsCaptchaToken = ((RegisFragmentOne) fragment.get(0)).getSmsCaptchaToken();
+
+                String shurumimaString = ((RegisFragmentTwe) fragment.get(1)).getShurumimaString();
+                String querenmimaString = ((RegisFragmentTwe) fragment.get(1)).getQuerenmimaString();
+
+                String personIdCardString = ((RegisFragmentthree) fragment.get(2)).getPersonIdCardString();
+                /**
+                 * 当所有信息都正确完善就提交注册申请
+                 */
+                if (TextUtil.checkEmpty(zijirenString) && TextUtil.checkEmpty(tuijianrenString) && TextUtil.checkEmpty(yanzhengmaString) && TextUtil.checkEmpty(shurumimaString) && TextUtil.checkEmpty(querenmimaString) && TextUtil.checkEmpty(personIdCardString)) {
+
+                    if (TextUtil.checkTwicePasswordIsEqual(getBaseContext(), shurumimaString, querenmimaString)) {
+                        if (TextUtil.isRealIDCard(personIdCardString)) {
+                            perform(zijirenString, yanzhengmaString, shurumimaString, personIdCardString, smsCaptchaToken);
+                        } else {
+                            Toast.makeText(getBaseContext(), "请填写正确的身份证号码", Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        Toast.makeText(getBaseContext(), "两次输入的密码不一致", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(getBaseContext(), "请完善信息", Toast.LENGTH_SHORT).show();
+                }
+
                 break;
         }
     }
@@ -296,6 +321,7 @@ public class RegisteredActivity extends FragmentActivity implements View.OnClick
                                 public void onSuccess(Object o) {
                                     Toast.makeText(getBaseContext(), "更新成功，等待审核", Toast.LENGTH_SHORT).show();
                                 }
+
                                 @Override
                                 public void onFailure(int resultCode, String message) {
                                 }
@@ -307,6 +333,7 @@ public class RegisteredActivity extends FragmentActivity implements View.OnClick
             }
         }
     }
+
     /**
      * 上传头像
      */

@@ -9,6 +9,7 @@ import com.shaojun.widget.superAdapter.internal.SuperViewHolder;
 import java.util.List;
 
 import bluetooth.inuker.com.grassinvain.R;
+import bluetooth.inuker.com.grassinvain.common.util.TextUtil;
 import bluetooth.inuker.com.grassinvain.network.body.response.PersonShouyiZDChiredBody;
 
 /**
@@ -37,7 +38,13 @@ public class ZhangDanDetailAdapter extends SuperAdapter<PersonShouyiZDChiredBody
             month.setText(item.months+ "月");
         }
         if (null != item.inComeMoney){
-            month_monery.setText("+" +item.inComeMoney);
+            if ("0".equals(item.inComeMoney)){
+                month_monery.setText("+0.00");
+            }else {
+                String s = TextUtil.insertString(item.inComeMoney);
+                month_monery.setText("+" +s);
+            }
+
         }
     }
 }

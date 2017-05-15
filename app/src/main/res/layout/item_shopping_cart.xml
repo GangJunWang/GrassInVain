@@ -93,21 +93,21 @@
         android:layout_marginBottom="3dp">
        <TextView
            android:id="@+id/shop_jian"
-           android:layout_width="15dp"
+           android:layout_width="25dp"
            android:layout_height="15dp"
            android:text="-"
            android:gravity="center"
            android:background="@drawable/background_xiankuang" />
         <TextView
             android:id="@+id/shop_num"
-            android:layout_width="15dp"
-            android:layout_height="wrap_content"
+            android:layout_width="25dp"
+            android:layout_height="15dp"
             android:background="@drawable/background_xiankuang"
             android:gravity="center"
             android:text="1"/>
         <TextView
             android:id="@+id/shop_add"
-            android:layout_width="15dp"
+            android:layout_width="25dp"
             android:layout_height="15dp"
             android:gravity="center"
             android:text="+"

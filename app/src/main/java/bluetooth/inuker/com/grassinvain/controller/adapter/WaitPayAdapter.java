@@ -11,6 +11,7 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 import bluetooth.inuker.com.grassinvain.R;
+import bluetooth.inuker.com.grassinvain.common.util.TextUtil;
 import bluetooth.inuker.com.grassinvain.network.body.response.AllOrdersecondBody;
 
 /**
@@ -36,7 +37,11 @@ public class WaitPayAdapter extends SuperAdapter<AllOrdersecondBody> {
         Picasso.with(mContext).load(item.logoUrl).placeholder(R.mipmap.morenproduct).into(shop_tupian);
         // 价格
         TextView shop_jiage = holder.findViewById(R.id.shop_jiage);
-        shop_jiage.setText(item.price);
+        if (TextUtil.checkEmpty(item.price)) {
+            String price = item.price;
+            shop_jiage.setText(item.price.substring(0,price.length()-2));
+        }
+
         // 规格
         TextView shop_guige = holder.findViewById(R.id.shop_guige);
         shop_guige.setText(item.productFormatId);

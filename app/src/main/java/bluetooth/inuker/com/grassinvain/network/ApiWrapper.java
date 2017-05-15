@@ -113,6 +113,15 @@ public class ApiWrapper {
                 .compose(this.<String>applySchedulers());
     }
 
+    /**
+     * 重置密码
+     *
+     * @return captchaToken
+     */
+    public Observable<String> restPwd(UserBody userBody) {
+        return RetrofitManager.getInstance().getUserService().restPwd(userBody)
+                .compose(this.<String>applySchedulers());
+    }
 
     /**
      * 文件上传-认证

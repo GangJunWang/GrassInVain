@@ -46,6 +46,11 @@ public class OrderListAdapter extends SuperAdapter<ProductSDeatilBody> {
         shop_title.setText(item.productName);
         //数量  默认
         TextView shop_shuliang = holder.findViewById(R.id.shop_shuliang);
-        shop_shuliang.setText("X"+item.count);
+        if (null == item.count) {
+            shop_shuliang.setText("X1");
+        } else {
+
+            shop_shuliang.setText("X" + item.count);
+        }
     }
 }

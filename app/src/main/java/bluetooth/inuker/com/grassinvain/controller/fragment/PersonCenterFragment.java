@@ -19,6 +19,7 @@ import bluetooth.inuker.com.grassinvain.R;
 import bluetooth.inuker.com.grassinvain.common.cache.CacheCenter;
 import bluetooth.inuker.com.grassinvain.common.other.SelectPicActivity;
 import bluetooth.inuker.com.grassinvain.common.util.CommonUtil;
+import bluetooth.inuker.com.grassinvain.common.util.TextUtil;
 import bluetooth.inuker.com.grassinvain.controller.activity.OrderPeocess;
 import bluetooth.inuker.com.grassinvain.controller.activity.ShouyiDetail;
 import bluetooth.inuker.com.grassinvain.controller.activity.WorkResult;
@@ -47,6 +48,7 @@ public class PersonCenterFragment extends Fragment implements View.OnClickListen
     private TextView user_class;
     private TextView user_name;
     private UserInfo userInfo1;
+    private TextView pricttype;
 
     @Nullable
     @Override
@@ -65,6 +67,7 @@ public class PersonCenterFragment extends Fragment implements View.OnClickListen
                 userInfo1 = userInfo;
                 setPersonCentenr(userInfo);
             }
+
             @Override
             public void onFailure(int resultCode, String message) {
             }
@@ -72,14 +75,23 @@ public class PersonCenterFragment extends Fragment implements View.OnClickListen
     }
 
     private void setPersonCentenr(UserInfo userInfo) {
-        current_shouyi.setText(userInfo.account.balance + "元");
-        current_shouyi.setTextColor(0xffff0000);
+        if ("0".equals(userInfo.account.balance)) {
+            current_shouyi.setText("0.00");
+            current_shouyi.setTextColor(0xffff0000);
+        } else {
+            String s = TextUtil.insertString(userInfo.account.balance);
+            current_shouyi.setText(s);
+            current_shouyi.setTextColor(0xffff0000);
+        }
+
         user_class.setText(userInfo.userClassName);
         user_name.setText(userInfo.userName);
         Picasso.with(getActivity()).load(userInfo.avatarUrl).placeholder(R.mipmap.morenback).into(uesrIcon);
     }
 
     private void initView() {
+        //价格单位
+        pricttype = (TextView) view.findViewById(R.id.textView30);
         // 当前收益
         current_shouyi = (TextView) view.findViewById(R.id.current_shouyi);
         //用户等级
@@ -127,10 +139,12 @@ public class PersonCenterFragment extends Fragment implements View.OnClickListen
             gologin.setVisibility(View.VISIBLE);
             userInformation.setVisibility(View.INVISIBLE);
             changeBackPic.setVisibility(View.INVISIBLE);
+            pricttype.setVisibility(View.INVISIBLE);
         } else {
             gologin.setVisibility(View.INVISIBLE);
             userInformation.setVisibility(View.VISIBLE);
             changeBackPic.setVisibility(View.VISIBLE);
+            pricttype.setVisibility(View.VISIBLE);
         }
 
     }
@@ -152,17 +166,17 @@ public class PersonCenterFragment extends Fragment implements View.OnClickListen
                     break;
                 case R.id.wait_pay:
                 case R.id.wait_pay2:
-                    intent.putExtra("page","1");
+                    intent.putExtra("page", "1");
                     startActivity(intent);
                     break;
                 case R.id.already_pay:
                 case R.id.already_pay2:
-                    intent.putExtra("page","2");
+                    intent.putExtra("page", "2");
                     startActivity(intent);
                     break;
                 case R.id.wait_speak:
                 case R.id.wait_speak2:
-                    intent.putExtra("page","3");
+                    intent.putExtra("page", "3");
                     startActivity(intent);
                     break;
                 case R.id.yeji_survey:
@@ -177,7 +191,7 @@ public class PersonCenterFragment extends Fragment implements View.OnClickListen
                 }
                 case R.id.shouyi_detail: {
                     Intent intent1 = new Intent(getActivity(), ShouyiDetail.class);
-                    intent1.putExtra("detail",userInfo1);
+                    intent1.putExtra("detail", userInfo1);
                     startActivity(intent1);
                 }
                 break;

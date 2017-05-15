@@ -13,7 +13,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import bluetooth.inuker.com.grassinvain.R;
+import bluetooth.inuker.com.grassinvain.common.util.MConstants;
+import bluetooth.inuker.com.grassinvain.common.util.TextUtil;
 import bluetooth.inuker.com.grassinvain.common.widget.MyEditText;
+import bluetooth.inuker.com.grassinvain.network.model.RequestModel.UserBody;
+import bluetooth.inuker.com.grassinvain.network.model.UserModel;
+import bluetooth.inuker.com.grassinvain.network.model.callback.Callback;
 
 /**
  * Created by 1 on 2017/3/23.
@@ -28,19 +33,22 @@ public class RegisFragmentOne extends Fragment {
     private TextView sendYanzhengma;
 
 
+    //获取短信验证码接口返回
+    public String smsCaptchaToken = "";
+    private UserModel userModel;
+
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.regis_activity, null);
+        userModel = new UserModel(getActivity());
         initView();
         return view;
 
     }
 
     private void initView() {
-/**
- * 初始化控件
- */
         tuijianren = (MyEditText) view.findViewById(R.id.tuiijanren);
         zijiren = (MyEditText) view.findViewById(R.id.zijiren);
         yanzhegnma = (MyEditText) view.findViewById(R.id.yanzhegnma);
@@ -50,11 +58,32 @@ public class RegisFragmentOne extends Fragment {
             @Override
             public void onClick(View view) {
 
-                if (!"".equals(tuijianren.getText().toString()) && !"".equals(zijiren.getText().toString())){
+                if (!"".equals(tuijianren.getText().toString()) && !"".equals(zijiren.getText().toString())) {
 
-                    countdown(); // 倒计时
-                }else {
-                    Toast.makeText(getActivity(),"请补充完整数据",Toast.LENGTH_SHORT).show();
+
+                    if (TextUtil.checkMobileNO(getActivity(), zijiren.getText().toString())) {
+                        countdown(); // 倒计时
+                        UserBody userBody = new UserBody();
+                        userBody.userMobile = zijiren.getText().toString();
+                        userBody.op = MConstants.SMSCAPTCHA_OP_FORGET;
+                        userBody.type = "0";
+                        userModel.smsCaptcha(userBody, new Callback<String>() {
+                            @Override
+                            public void onSuccess(String s) {
+                                smsCaptchaToken = s;
+                            }
+
+                            @Override
+                            public void onFailure(int resultCode, String message) {
+
+                            }
+                        });
+                    } else {
+                        Toast.makeText(getActivity(), "手机号码格式不正确", Toast.LENGTH_SHORT).show();
+                    }
+
+                } else {
+                    Toast.makeText(getActivity(), "请补充完整数据", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -70,7 +99,7 @@ public class RegisFragmentOne extends Fragment {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                tuijianrenString = tuijianren.getText().toString().trim();
+                tuijianrenString = tuijianren.getText().toString();
             }
         });
         zijiren.addTextChangedListener(new TextWatcher() {
@@ -84,7 +113,7 @@ public class RegisFragmentOne extends Fragment {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                zijirenString = zijiren.getText().toString().toString();
+                zijirenString = zijiren.getText().toString();
             }
         });
 
@@ -99,7 +128,7 @@ public class RegisFragmentOne extends Fragment {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                yanzhengmaString = yanzhegnma.getText().toString().trim();
+                yanzhengmaString = yanzhegnma.getText().toString();
             }
         });
     }
@@ -116,6 +145,9 @@ public class RegisFragmentOne extends Fragment {
         return yanzhengmaString;
     }
 
+    public String getSmsCaptchaToken() {
+        return smsCaptchaToken;
+    }
     /**
      * 倒计时
      */

@@ -30,6 +30,7 @@ public class TixianRecoder extends AppCompatActivity {
     private int requestCode1 = 1;
     private int requestCode2 = 2;
     private BankCardChiredBody bankcard;
+    private String s;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,13 +69,26 @@ public class TixianRecoder extends AppCompatActivity {
         tixian_number = (MyEditText) findViewById(R.id.tixian_number);
         // 当前可用余额
         current_yue = (TextView) findViewById(R.id.current_yue);
-        current_yue.setText("可用余额￥" + uesrmonery + "元,");
+        if ("0".equals(uesrmonery)) {
+            current_yue.setText("可用余额￥0.00元,");
+        } else {
+            String uesrmonery = this.uesrmonery;
+            StringBuilder stringBuilder = new StringBuilder(uesrmonery);
+            stringBuilder.insert(uesrmonery.length() - 2, ".");
+            s = stringBuilder.toString();
+            current_yue.setText("可用余额￥" + s + "元,");
+        }
         //全部提现
         all_tixian = (TextView) findViewById(R.id.all_tixian);
         all_tixian.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                tixian_number.setText(uesrmonery);
+                if ("0".equals(uesrmonery)){
+                    tixian_number.setText("0");
+                }else {
+                    tixian_number.setText(s.substring(0,s.length()-3));
+                }
+
             }
         });
         // 确认提现

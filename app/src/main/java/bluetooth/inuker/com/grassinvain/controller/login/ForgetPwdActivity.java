@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import bluetooth.inuker.com.grassinvain.R;
+import bluetooth.inuker.com.grassinvain.common.util.MConstants;
 import bluetooth.inuker.com.grassinvain.common.util.TextUtil;
 import bluetooth.inuker.com.grassinvain.common.util.ToastUtil;
 import bluetooth.inuker.com.grassinvain.common.widget.MyEditText;
@@ -36,6 +37,10 @@ public class ForgetPwdActivity extends AppCompatActivity implements View.OnClick
     private LinearLayout activityForget;
     private ImageView forgetBack;
     private UserModel userModel;
+
+
+    //获取短信验证码接口返回
+    private String smsCaptchaToken = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,13 +74,16 @@ public class ForgetPwdActivity extends AppCompatActivity implements View.OnClick
                 finish();
                 break;
             case R.id.forget_send_yanzhegnma:
-                if ("".equals(forgetPonemunber.getText().toString())) {
+                if (!"".equals(forgetPonemunber.getText().toString())) {
                     countdown();
                     UserBody userBody = new UserBody();
+                    userBody.userMobile = forgetPonemunber.getText().toString();
+                    userBody.op = MConstants.SMSCAPTCHA_OP_FORGET;
+                    userBody.type = "0";
                     userModel.smsCaptcha(userBody, new Callback<String>() {
                         @Override
                         public void onSuccess(String s) {
-
+                            smsCaptchaToken = s;
                         }
 
                         @Override
@@ -94,7 +102,28 @@ public class ForgetPwdActivity extends AppCompatActivity implements View.OnClick
 
                     boolean b = TextUtil.checkTwicePasswordIsEqual(ForgetPwdActivity.this, forgetFistpwd.getText().toString(), forgetSecond.getText().toString());
                     if (b) {
-                        perform();
+
+
+                        UserBody userBody = new UserBody();
+                        userBody.userMobile = forgetPonemunber.getText().toString();
+                        userBody.captcha = forgetYanzhegnma.getText().toString();
+                        userBody.userPwd = forgetFistpwd.getText().toString();
+                        userBody.confirmPwd = forgetSecond.getText().toString();
+                        userBody.captchaToken = smsCaptchaToken;
+                        userBody.op = MConstants.SMSCAPTCHA_OP_REGISTER;
+                        userBody.type = "0";
+                        userModel.restPwd(userBody, new Callback<String>() {
+                            @Override
+                            public void onSuccess(String s) {
+                                perform();
+                                finish();
+                            }
+
+                            @Override
+                            public void onFailure(int resultCode, String message) {
+
+                            }
+                        });
 
 
                     } else {
@@ -114,16 +143,16 @@ public class ForgetPwdActivity extends AppCompatActivity implements View.OnClick
 
     private void perform() {
 
-        MySuccessDialog mySuccessDialog = new MySuccessDialog(ForgetPwdActivity.this,R.style.Dialog);
+        MySuccessDialog mySuccessDialog = new MySuccessDialog(ForgetPwdActivity.this, R.style.Dialog);
         mySuccessDialog.show();
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(ForgetPwdActivity.this,LoginActivity.class);
+                Intent intent = new Intent(ForgetPwdActivity.this, LoginActivity.class);
                 startActivity(intent);
                 finish();
             }
-        } , 2000);
+        }, 2000);
 
 
     }

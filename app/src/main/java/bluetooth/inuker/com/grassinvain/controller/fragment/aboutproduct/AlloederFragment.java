@@ -69,7 +69,7 @@ public class AlloederFragment extends Fragment {
         allorderrecycView.setAdapter(alloederFragmentAdapter);
 
         /**
-         * 实现上拉加载
+         * 实现下拉加载
          */
         allorderrecycView.setOnScrollListener(new RecyclerView.OnScrollListener() {
             int lastVisibleItem;

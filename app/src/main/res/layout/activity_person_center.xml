@@ -124,15 +124,33 @@
             android:textColor="#999"
             android:textSize="13dp" />
 
-        <TextView
-            android:id="@+id/current_shouyi"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="15dp"
-            android:text="无收益"
-            android:textColor="#999"
-            android:textSize="22dp" />
+            android:gravity="center">
+            <TextView
+                android:id="@+id/current_shouyi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:text="无收益"
+                android:textColor="#999"
+                android:textSize="22dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="元"
+                android:layout_alignBaseline="@+id/current_shouyi"
+                android:layout_alignBottom="@+id/current_shouyi"
+                android:layout_toRightOf="@+id/current_shouyi"
+                android:layout_toEndOf="@+id/current_shouyi"
+                android:visibility="gone"
+                android:id="@+id/textView30" />
+        </RelativeLayout>
+
 
         <ImageView
             android:layout_width="wrap_content"

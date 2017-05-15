@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bluetooth.inuker.com.grassinvain.R;
+import bluetooth.inuker.com.grassinvain.common.util.TextUtil;
 import bluetooth.inuker.com.grassinvain.controller.adapter.ZhangDanDetailAdapter;
 import bluetooth.inuker.com.grassinvain.network.body.UserInfo;
 import bluetooth.inuker.com.grassinvain.network.body.response.PageBody;
@@ -52,22 +53,22 @@ public class ShouyiDetail extends AppCompatActivity implements View.OnClickListe
         PageBody pageBody = new PageBody();
         pageBody.pageNum = 10;
         pageBody.pageSize = 1;
-    userModel.getPerZhangDList(pageBody, new Callback<PersonShouyiZhangdanBody>() {
-        @Override
-        public void onSuccess(PersonShouyiZhangdanBody personShouyiZhangdanBody) {
-            List<PersonShouyiZDChiredBody> list = personShouyiZhangdanBody.list;
-            data.clear();
-            zhangDanDetailAdapter.clear();
-            data.addAll(list);
-            zhangDanDetailAdapter.addAll(list);
-            zhangDanDetailAdapter.notifyDataSetHasChanged();
-        }
+        userModel.getPerZhangDList(pageBody, new Callback<PersonShouyiZhangdanBody>() {
+            @Override
+            public void onSuccess(PersonShouyiZhangdanBody personShouyiZhangdanBody) {
+                List<PersonShouyiZDChiredBody> list = personShouyiZhangdanBody.list;
+                data.clear();
+                zhangDanDetailAdapter.clear();
+                data.addAll(list);
+                zhangDanDetailAdapter.addAll(list);
+                zhangDanDetailAdapter.notifyDataSetHasChanged();
+            }
 
-        @Override
-        public void onFailure(int resultCode, String message) {
+            @Override
+            public void onFailure(int resultCode, String message) {
 
-        }
-    });
+            }
+        });
 
     }
 
@@ -80,21 +81,54 @@ public class ShouyiDetail extends AppCompatActivity implements View.OnClickListe
         tiXian.setOnClickListener(this);
         // 当前余额
         curronMonery = (TextView) findViewById(R.id.textView1);
-        curronMonery.setText(userInfo.account.balance);
+        if ("0".equals(userInfo.account.balance)) {
+            curronMonery.setText("0.00");
+        } else {
+            String s = TextUtil.insertString(userInfo.account.balance);
+            curronMonery.setText(s);
+        }
+
         // 个人收益
         personShouyi = (TextView) findViewById(R.id.person_shouyi);
-        personShouyi.setText(userInfo.account.personalProfit);
+        if ("0".equals(userInfo.account.personalProfit)) {
+            personShouyi.setText("0.00");
+        } else {
+            String s = TextUtil.insertString(userInfo.account.personalProfit);
+            personShouyi.setText(s);
+        }
+
         // 团队收益
         teanShouyi = (TextView) findViewById(R.id.team_shouyi);
-        teanShouyi.setText(userInfo.account.teamProfit);
+        if ("0".equals(userInfo.account.teamProfit)) {
+            teanShouyi.setText("0.00");
+        } else {
+            String s = TextUtil.insertString(userInfo.account.teamProfit);
+            teanShouyi.setText(s);
+        }
         // 教育奖金
         jiaoyuJiangjin = (TextView) findViewById(R.id.jiaoyu_jiangjin);
-        jiaoyuJiangjin.setText(userInfo.account.educationProfit);
+        if ("0".equals(userInfo.account.educationProfit)) {
+            jiaoyuJiangjin.setText("0.00");
+        } else {
+            String s = TextUtil.insertString(userInfo.account.educationProfit);
+            jiaoyuJiangjin.setText(s);
+        }
         //收入金额
         shouruJine = (TextView) findViewById(R.id.textView6);
-        shouruJine.setText(userInfo.account.balance);
+        if ("0".equals(userInfo.account.balance)) {
+            shouruJine.setText("0.00");
+        } else {
+            String s = TextUtil.insertString(userInfo.account.balance);
+            shouruJine.setText(s);
+        }
         // 提现金额
         jitixianJine = (TextView) findViewById(R.id.textView7);
+        if ("0".equals(userInfo.account.cashBalance)){
+            jitixianJine.setText("0.00");
+        }else {
+            String s = TextUtil.insertString(userInfo.account.cashBalance);
+            jitixianJine.setText(s);
+        }
         jitixianJine.setText(userInfo.account.cashBalance);
         // 账单列表
         zhangdanRecycView = (RecyclerView) findViewById(R.id.zhangdan_recyclerView);
@@ -108,7 +142,7 @@ public class ShouyiDetail extends AppCompatActivity implements View.OnClickListe
         switch (view.getId()) {
             case R.id.textView5:
                 Intent intent = new Intent(ShouyiDetail.this, TixianRecoder.class);
-                intent.putExtra("uesrmonery",userInfo.account.balance);
+                intent.putExtra("uesrmonery", userInfo.account.balance);
                 startActivity(intent);
                 break;
             case R.id.back:

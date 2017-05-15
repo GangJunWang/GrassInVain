@@ -44,7 +44,11 @@ public class WaitSpeakFragmentAdapter extends SuperAdapter<AllOrderfirstBody> {
         TextView time = holder.findViewById(R.id.time);
         time.setText(item.createAt);
         TextView hejiprice = holder.findViewById(R.id.textView25);
-        hejiprice.setText(item.amount);
+        String amount = item.amount;
+        StringBuilder stringBuilder = new StringBuilder(amount);
+        stringBuilder.insert(stringBuilder.length()-2,".");
+        String s = stringBuilder.toString();
+        hejiprice.setText(s);
 
         /**
          * 子布局

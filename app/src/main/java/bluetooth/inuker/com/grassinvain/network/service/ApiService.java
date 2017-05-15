@@ -60,6 +60,8 @@ public interface ApiService {
     @POST("service/register/0")
     Observable<Response<UserInfo>> register(@Body UserBody userBody);
 
+
+
     /**
      * 发送验证码
      *
@@ -70,6 +72,13 @@ public interface ApiService {
     Observable<Response<String>> smsCaptcha(@Body UserBody userBody);
 
 
+    /**
+     * 重置密码
+     *
+     * @return
+     */
+    @POST("service/restPwd/0")
+    Observable<Response<String>> restPwd(@Body UserBody userBody);
     /**
      * 文件上传-认证
      *

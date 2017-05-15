@@ -92,7 +92,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
         xuyao_zhifu_price = (TextView) findViewById(R.id.xuyao_zhifu_price);
         zongjai = 0;
         for (int i = 0; i < data.size(); i++) {
-            int count = parseInt(data.get(i).count);
+            int count = 1;
             int price = parseInt(data.get(i).productFormatPrice);
             zongjai += (count*price);
         }

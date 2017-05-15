@@ -113,6 +113,24 @@ public class UserModel extends BaseModel implements IUserModel {
         addSubscrebe(subscription);
     }
 
+    @Override
+    public void restPwd(UserBody userBod, final Callback<String> callback) {
+        ApiWrapper apiWrapper = new ApiWrapper();
+        Subscription subscription = apiWrapper.restPwd(userBod)
+                .subscribe(new NewSubscriber<String>(context, true) {
+                    @Override
+                    public void onNext(String string) {
+                        callback.onSuccess(string);
+                    }
+
+                    @Override
+                    protected void onError(ApiException ex) {
+                        super.onError(ex);
+                        callback.onFailure(ex.getCode(), ex.getErrMessage());
+                    }
+                });
+        addSubscrebe(subscription);
+    }
 
     @Override
     public void ossAuth(String mediaType, final Callback<OssAuth> callback) {
