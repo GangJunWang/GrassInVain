@@ -46,4 +46,5 @@ dependencies {
     compile 'com.makeramen:roundedimageview:2.3.0'
     compile files('libs/aliyun-oss-sdk-android-2.2.0.jar')
     compile 'com.airsaid.library:pickerview:1.0.3'
+    compile 'org.xutils:xutils:3.5.0'
 }
