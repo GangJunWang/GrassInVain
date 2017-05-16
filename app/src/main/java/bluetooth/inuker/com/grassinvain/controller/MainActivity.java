@@ -449,7 +449,6 @@ public class MainActivity extends BaseActivity {
             }
         }
     }
-
     /**
      * 上传头像
      */
@@ -464,13 +463,23 @@ public class MainActivity extends BaseActivity {
                 intent.putExtra(UpLoadFileActivity.KEY_SHOW_UPLOAD_PROGRESS, false);
                 startActivityForResult(intent, MConstants.REQUESTCODE_UPLOAD);
             }
-
             @Override
             public void onFailure(int resultCode, String message) {
                 Toast.makeText(getBaseContext(), "请求失败", Toast.LENGTH_SHORT).show();
             }
         });
     }
-
-
+    /**
+     * 连续点击两次退出应用
+     */
+    private long currentTimr = 0;
+    @Override
+    public void onBackPressed() {
+        Toast.makeText(getBaseContext(), "连续点击退出....", Toast.LENGTH_SHORT).show();
+        long l = System.currentTimeMillis();
+        if (l - currentTimr < 2000) {
+            super.onBackPressed();
+        }
+        currentTimr = l;
+    }
 }

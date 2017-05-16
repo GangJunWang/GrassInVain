@@ -230,15 +230,13 @@ public interface ApiService {
     /**
      * 提交订单列表
      */
-
-
     @POST("/orders/generateOrders/0")
     Observable<Response<SubmitOrderBody>> getSubmitOrder(@Body SubmitOrderBody submitOrderBody);
 
     /**
      * 提交订单号
      */
-    @POST("/orders/cancelOrder/{orderNo}/0")
+    @POST("/orders/rechargeOrder/{orderNo}/0")
     Observable<Response<Object>> getSubmitOrdernumber(@Path("orderNo") String Id);
 
     /**
@@ -273,7 +271,7 @@ public interface ApiService {
      * 提现到银行卡
      */
 
-    @POST("/accounts/addUserWithdraw")
+    @POST("/accounts/addUserWithdraw/0")
     Observable<Response<Object>> getTixian(@Body TixianBody tixianBody);
 
     /**
@@ -312,7 +310,7 @@ public interface ApiService {
      * 添加银行卡
      */
 
-    @POST("/products/addProductEvaluate/0")
+    @POST("/banks/addBanks/0")
     Observable<Response<Object>> getAddBankCard(@Body AddbankCardBody addbankCardBody);
 }
 

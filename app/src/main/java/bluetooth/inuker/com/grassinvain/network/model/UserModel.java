@@ -735,6 +735,7 @@ public class UserModel extends BaseModel implements IUserModel {
      */
     @Override
     public void getTixian(TixianBody tixianBody, final Callback<Object> callback) {
+
         ApiWrapper apiWrapper = new ApiWrapper();
         Subscription subscription = apiWrapper.getTixian(tixianBody)
                 .subscribe(new NewSubscriber<Object>(context, true) {

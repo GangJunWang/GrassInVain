@@ -4,6 +4,7 @@ import android.content.Context;
 import android.text.TextUtils;
 import android.view.inputmethod.InputMethodManager;
 
+import java.math.BigDecimal;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -186,5 +187,25 @@ public class TextUtil {
         stringBuilder.insert(string.length()-2,".");
         String s = stringBuilder.toString();
         return s;
+    }
+
+    public static String insertString2(String string){
+        StringBuilder stringBuilder = new StringBuilder(string);
+        stringBuilder.insert(string.length(),"00");
+        String s = stringBuilder.toString();
+        return s;
+    }
+
+
+    public static String fen2yuan(int money) {
+        BigDecimal bigMoney = new BigDecimal(String.valueOf(money));
+        BigDecimal feedRate = new BigDecimal("100");
+        String returnStr = String.valueOf(bigMoney.divide(feedRate).setScale(2));
+        if (returnStr.indexOf(".") > 0) {
+            //正则表达
+            returnStr = returnStr.replaceAll("0+?$", "");//去掉后面无用的零
+            returnStr = returnStr.replaceAll("[.]$", "");//如小数点后面全是零则去掉小数点
+        }
+        return returnStr;
     }
 }

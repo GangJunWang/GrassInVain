@@ -21,6 +21,7 @@ public class ProductSDeatilBody implements Serializable {
     public String productFormatPrice;
     public List<ProductSpeakBody> productDetailImageList;
     public String goumaishuliang = "1";
+    public String shopCarId;
 
     public String price;
     public String count;

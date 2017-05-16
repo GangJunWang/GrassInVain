@@ -20,6 +20,8 @@ import com.loonggg.rvbanner.lib.RecyclerViewBanner;
 import com.shaojun.widget.superAdapter.OnItemClickListener;
 import com.squareup.picasso.Picasso;
 
+import org.xutils.x;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,6 +42,7 @@ import bluetooth.inuker.com.grassinvain.network.model.callback.Callback;
 
 public class HomeFragment extends Fragment {
 
+
     private View view;
     private RecyclerView homeRecyclerview;
     private List<ProductListBody> data = new ArrayList<>();
@@ -50,52 +53,18 @@ public class HomeFragment extends Fragment {
     private UserModel userModel;
     private ProductBody productListBodies1;
 
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.hone_activity, null);
         userModel = new UserModel(getActivity());
+        x.view().inject(getActivity());
         initData();
         return view;
     }
 
-    /**
-     * 再次获取焦点
-     */
-    @Override
-    public void onResume() {
-        super.onResume();
-    }
-
-    /**
-     * 失去焦点
-     */
-    @Override
-    public void onPause() {
-        super.onPause();
-        //   data.clear();
-        // listBanner.clear();
-    }
     private void initData() {
-        PageBody pageBody = new PageBody();
-        pageBody.pageNum = 1;
-        pageBody.pageSize = 10;
-        pageBody.orders = "";
-        userModel.getProductList(pageBody, new Callback<ProductBody>() {
-            @Override
-            public void onSuccess(ProductBody productListBodies) {
-                productListBodies1 = productListBodies;
-                List<ProductListBody> list = productListBodies.list;
-                data.addAll(list);
-                homeAdapter.clear();
-                homeAdapter.addAll(list);
-                homeAdapter.notifyDataSetHasChanged();
-            }
-            @Override
-            public void onFailure(int resultCode, String message) {
-            }
-        });
+
         userModel.getBanner(new Callback<List<BannerBody>>() {
             @Override
             public void onSuccess(List<BannerBody> banners) {
@@ -103,16 +72,39 @@ public class HomeFragment extends Fragment {
                 for (int i = 0; i < banners.size(); i++) {
                     listBanner.add(new Banner(banners.get(i).resource));
                 }
-                initView();
+                //  initView();
+                getProduct();
             }
+
             @Override
             public void onFailure(int resultCode, String message) {
             }
         });
     }
 
-    private void initView() {
+    private void getProduct() {
+        PageBody pageBody = new PageBody();
+        pageBody.pageNum = 1;
+        pageBody.pageSize = 10;
+        pageBody.orders = "";
+        userModel.getProductList(pageBody, new Callback<ProductBody>() {
+            @Override
+            public void onSuccess(ProductBody productListBodies) {
+                data.clear();
+                productListBodies1 = productListBodies;
+                data.addAll(productListBodies1.list);
+                initView();
+            }
 
+            @Override
+            public void onFailure(int resultCode, String message) {
+
+            }
+        });
+
+    }
+
+    private void initView() {
         banner = (RecyclerViewBanner) view.findViewById(R.id.shouye_lunbo);
         banner.setRvBannerData(listBanner);
         banner.setIndicatorInterval(2000);
@@ -129,8 +121,6 @@ public class HomeFragment extends Fragment {
                 Toast.makeText(getActivity(), "" + i, Toast.LENGTH_SHORT).show();
             }
         });
-
-
         homeRecyclerview = (RecyclerView) view.findViewById(R.id.home_recyclerview);
         topScrollview = (ScrollView) view.findViewById(R.id.top_scrollview);
         new Handler().postDelayed(new Runnable() {
@@ -148,7 +138,6 @@ public class HomeFragment extends Fragment {
         homeRecyclerview.setLayoutManager(gridLayoutManager);
         homeAdapter = new HomeAdapter(getActivity(), data, R.layout.home_content_activity);
         homeRecyclerview.setAdapter(homeAdapter);
-
         topScrollview.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -171,6 +160,7 @@ public class HomeFragment extends Fragment {
                 return false;
             }
         });
+
         homeAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View itemView, int viewType, int position) {
@@ -186,6 +176,7 @@ public class HomeFragment extends Fragment {
     private class Banner {
 
         String url;
+
         public Banner(String url) {
             this.url = url;
         }

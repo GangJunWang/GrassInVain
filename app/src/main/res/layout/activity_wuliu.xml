@@ -37,25 +37,28 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
+
         <LinearLayout
             android:id="@+id/zanwuwuliu"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
                 android:background="@mipmap/wuliu"
+                android:text="暂时还没有物流信息"
                 android:textColor="#fff"
-                android:textSize="@dimen/dp10"
-                android:text="暂时还没有物流信息" />
+                android:textSize="@dimen/dp10" />
         </LinearLayout>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/wuliu_recyclerview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1">
-        </android.support.v7.widget.RecyclerView>
+            android:layout_weight="1"></android.support.v7.widget.RecyclerView>
     </FrameLayout>
 
 </LinearLayout>

@@ -7,4 +7,14 @@ import java.io.Serializable;
  */
 
 public class AddbankCardBody implements Serializable {
+
+    public Long banksId;
+    public Long userId;
+    public String cardHolder;
+    public String cardCode;
+    public String bankName;
+    public String reservedPhone;
+    public String status;
+
+
 }

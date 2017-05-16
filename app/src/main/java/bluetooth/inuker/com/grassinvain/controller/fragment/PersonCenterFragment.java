@@ -60,6 +60,17 @@ public class PersonCenterFragment extends Fragment implements View.OnClickListen
         return view;
     }
 
+
+    @Override
+    public void onResume() {
+        initData();
+        super.onResume();
+    }
+
+    /**
+     * 得到焦点
+     */
+
     private void initData() {
         userModel.getPersonCentern(new Callback<UserInfo>() {
             @Override
@@ -79,7 +90,7 @@ public class PersonCenterFragment extends Fragment implements View.OnClickListen
             current_shouyi.setText("0.00");
             current_shouyi.setTextColor(0xffff0000);
         } else {
-            String s = TextUtil.insertString(userInfo.account.balance);
+            String s = TextUtil.fen2yuan(Integer.parseInt(userInfo.account.balance));
             current_shouyi.setText(s);
             current_shouyi.setTextColor(0xffff0000);
         }

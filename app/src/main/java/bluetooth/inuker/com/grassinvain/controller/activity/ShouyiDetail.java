@@ -49,6 +49,13 @@ public class ShouyiDetail extends AppCompatActivity implements View.OnClickListe
         initView();
     }
 
+    @Override
+    protected void onResume() {
+        initData();
+        super.onResume();
+
+    }
+
     private void initData() {
         PageBody pageBody = new PageBody();
         pageBody.pageNum = 10;
@@ -70,6 +77,23 @@ public class ShouyiDetail extends AppCompatActivity implements View.OnClickListe
             }
         });
 
+        /**
+         * 实时更新用户余额
+         */
+
+        userModel.getPersonCentern(new Callback<UserInfo>() {
+            @Override
+            public void onSuccess(UserInfo userInfo) {
+                String balance = userInfo.account.balance;
+                String s = TextUtil.fen2yuan(Integer.parseInt(balance));
+                curronMonery.setText(s);
+            }
+
+            @Override
+            public void onFailure(int resultCode, String message) {
+
+            }
+        });
     }
 
     private void initView() {
@@ -84,10 +108,9 @@ public class ShouyiDetail extends AppCompatActivity implements View.OnClickListe
         if ("0".equals(userInfo.account.balance)) {
             curronMonery.setText("0.00");
         } else {
-            String s = TextUtil.insertString(userInfo.account.balance);
+            String s = TextUtil.fen2yuan(Integer.parseInt(userInfo.account.balance));
             curronMonery.setText(s);
         }
-
         // 个人收益
         personShouyi = (TextView) findViewById(R.id.person_shouyi);
         if ("0".equals(userInfo.account.personalProfit)) {
@@ -123,9 +146,9 @@ public class ShouyiDetail extends AppCompatActivity implements View.OnClickListe
         }
         // 提现金额
         jitixianJine = (TextView) findViewById(R.id.textView7);
-        if ("0".equals(userInfo.account.cashBalance)){
+        if ("0".equals(userInfo.account.cashBalance)) {
             jitixianJine.setText("0.00");
-        }else {
+        } else {
             String s = TextUtil.insertString(userInfo.account.cashBalance);
             jitixianJine.setText(s);
         }

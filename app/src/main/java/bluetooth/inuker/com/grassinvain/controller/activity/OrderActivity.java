@@ -94,11 +94,11 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
         for (int i = 0; i < data.size(); i++) {
             int count = 1;
             int price = parseInt(data.get(i).productFormatPrice);
-            zongjai += (count*price);
+            zongjai += (count * price);
         }
         String s = zongjai + "";
         StringBuilder sb2 = new StringBuilder(s);
-        sb2.insert(s.length()-2,".");
+        sb2.insert(s.length() - 2, ".");
         String s1 = sb2.toString();
         xuyao_zhifu_price.setText(s1);
         //添加横线 表示此价格无效
@@ -125,18 +125,20 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
 
         userModel.getPersonCentern(new Callback<UserInfo>() {
             private String buyProportion;
+
             @Override
             public void onSuccess(UserInfo userInfo) {
                 buyProportion = userInfo.buyProportion;
-                huiyuan_zhuanxiang.setText(Integer.parseInt(buyProportion)*0.1 + "");
-                shijiprice = (int) (zongjai * Integer.parseInt(buyProportion)*0.1);
+                huiyuan_zhuanxiang.setText(Integer.parseInt(buyProportion) * 0.01 + "");
+                shijiprice = (int) (zongjai * Integer.parseInt(buyProportion) * 0.01);
                 // 在后两位前插入小数点
                 String s = shijiprice + "";
-                StringBuilder  sb = new StringBuilder (shijiprice + "");
-                sb.insert(s.length()-2, ".");
+                StringBuilder sb = new StringBuilder(shijiprice + "");
+                sb.insert(s.length() - 2, ".");
                 String marStrNew = sb.toString();
                 shiji_price.setText(marStrNew);
             }
+
             @Override
             public void onFailure(int resultCode, String message) {
             }
@@ -151,18 +153,21 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                 morenAddressBody1 = morenAddressBody;
                 setuserImformation(morenAddressBody1);
             }
+
             @Override
             public void onFailure(int resultCode, String message) {
             }
         });
     }
+
     private void setuserImformation(MorenAddressBody morenAddressBody) {
 
-        moren_xuanzhong_address.setText(morenAddressBody.address+morenAddressBody.addressDetail);
+        moren_xuanzhong_address.setText(morenAddressBody.address + morenAddressBody.addressDetail);
         moren_name.setText(morenAddressBody.userName);
         moren_phone.setText(morenAddressBody.userMobile);
 
     }
+
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -170,8 +175,8 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                 finish();
                 break;
             case R.id.user_address:
-                Intent intent =new Intent(OrderActivity.this, TheGoodsAddress.class);
-               startActivityForResult(intent,requestCode);
+                Intent intent = new Intent(OrderActivity.this, TheGoodsAddress.class);
+                startActivityForResult(intent, requestCode);
                 break;
             case R.id.textView15:
                 popupWindow();
@@ -185,7 +190,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                 weixin_src.setImageResource(R.mipmap.xuanzhong);
                 break;
             case R.id.queren:
-                 // 提交订单
+                // 提交订单
                 SubmitOrderBody submitOrderBody = new SubmitOrderBody();
                 submitOrderBody.contactPhone = morenAddressBody1.userMobile;
                 submitOrderBody.address = morenAddressBody1.address + morenAddressBody1.addressDetail;
@@ -200,6 +205,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                     productSDeatilBody.productId = data.get(i).productId;
                     productSDeatilBody.productName = data.get(i).productName;
                     productSDeatilBody.formatName = data.get(i).formatName;
+                    productSDeatilBody.shopCarId = data.get(i).shopCarId;
                     list.add(productSDeatilBody);
                 }
                 submitOrderBody.orderInfoList = list;
@@ -209,6 +215,7 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
                         String orderNo = submitOrderBody.orderNo;
                         perform(orderNo);
                     }
+
                     @Override
                     public void onFailure(int resultCode, String message) {
                     }
@@ -221,16 +228,18 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
         userModel.getSubmitOrdernumber(orderNo, new Callback<Object>() {
             @Override
             public void onSuccess(Object o) {
-                Toast.makeText(getBaseContext(),"支付成功",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext(), "支付成功", Toast.LENGTH_SHORT).show();
                 mCameraDialog.cancel();
                 finish();
             }
+
             @Override
             public void onFailure(int resultCode, String message) {
 
             }
         });
     }
+
     private void popupWindow() {
         mCameraDialog = new Dialog(this, R.style.my_dialog);
         LinearLayout root = (LinearLayout) LayoutInflater.from(this).inflate(
@@ -260,13 +269,13 @@ public class OrderActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        switch (resultCode){
+        switch (resultCode) {
             case RESULT_OK:
                 Bundle extras = data.getExtras();
                 AddressDetailBody address = (AddressDetailBody) extras.getSerializable("address");
                 moren_name.setText(address.userName);
                 moren_phone.setText(address.userMobile);
-                moren_xuanzhong_address.setText(address.address+address.addressDetail);
+                moren_xuanzhong_address.setText(address.address + address.addressDetail);
                 break;
         }
         super.onActivityResult(requestCode, resultCode, data);

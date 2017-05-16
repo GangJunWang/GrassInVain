@@ -90,7 +90,7 @@ public class HomeAdapter extends SuperAdapter<ProductListBody> {
                 userModel.getJoinShoppingCar(joinShoppingCarBody, new Callback<String>() {
                     @Override
                     public void onSuccess(String s) {
-                        Toast.makeText(mContext, "已加入", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mContext, "加入购物车", Toast.LENGTH_SHORT).show();
                     }
                     @Override
                     public void onFailure(int resultCode, String message) {
@@ -116,7 +116,7 @@ public class HomeAdapter extends SuperAdapter<ProductListBody> {
                 userModel.getJoinShoppingCar(joinShoppingCarBody, new Callback<String>() {
                     @Override
                     public void onSuccess(String s) {
-                        Toast.makeText(mContext, "已加入", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mContext, "加入购物车", Toast.LENGTH_SHORT).show();
                     }
                     @Override
                     public void onFailure(int resultCode, String message) {

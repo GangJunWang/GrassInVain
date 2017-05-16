@@ -9,7 +9,6 @@
         android:normalScreens="true"
         android:resizeable="true"
         android:smallScreens="true" />
-
     <!-- 网络相关 -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -21,16 +20,12 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
-
     <!-- 多媒体 -->
     <uses-permission android:name="android.permission.CAMERA" />
-
     <uses-feature android:name="android.hardware.camera.autofocus" />
-
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
-
     <application
         android:name=".controller.MyApplication"
         android:allowBackup="true"
@@ -41,16 +36,17 @@
         <activity android:name=".controller.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".controller.MainActivity" />
+
+        <!--登录注册忘记密码-->
         <activity android:name=".controller.login.LoginActivity" />
         <activity android:name=".controller.login.RegisteredActivity" />
         <activity android:name=".controller.login.ForgetPwdActivity" />
         <activity android:name=".controller.personinformation.ChangePersonInformation" />
-        <!-- <activity android:name=".controller.TextActivity"></activity> -->
+        <!--商品详情-->
         <activity android:name=".controller.activity.GoodsDetails" />
         <!-- 选择图片 -->
         <activity
@@ -83,6 +79,7 @@
         <activity android:name=".controller.activity.personactivity.ChangeNameActivity" />
         <!-- 改变用户性别 -->
         <activity android:name=".controller.activity.personactivity.ChangeGenderActivity" />
+
         <activity android:name=".controller.activity.Submitorder" />
         <!-- 收货地址 -->
         <activity android:name=".controller.personinformation.TheGoodsAddress" />
@@ -98,6 +95,7 @@
         <activity android:name=".controller.activity.personactivity.WuliuActivity" />
         <!-- 产品评价 -->
         <activity android:name=".controller.activity.ProductSpexkActivity" />
+        <!--添加银行卡-->
         <activity android:name=".controller.activity.personactivity.AddUserBank"></activity>
     </application>
 

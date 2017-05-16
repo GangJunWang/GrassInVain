@@ -108,7 +108,6 @@ public interface IUserModel {
 
     void getTixian(TixianBody tixianBody, Callback<Object> callback);
 
-
     void getdeleteProduct(List list, Callback<Object> callback);
 
     void getproductSpeaklist(String orderNo, Callback<ProductSpeakList> callback);

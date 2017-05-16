@@ -29,9 +29,9 @@ public class MConstants {
     // public static final String BASE_URL = "http://192.168.199.240:8080/";
     //  public static final String BASE_URL = "http://10.22.1.184:8080/";
 
-    //public static final String BASE_URL = "http://192.168.199.165:8090/";
+    public static final String BASE_URL = "http://192.168.199.165:8090/";
     //服务器地址
-    public static final String BASE_URL = "http://120.55.82.96:9080/";
+    //public static final String BASE_URL = "http://120.55.82.96:9080/";
     public static final int HTTP_CONNECT_TIMEOUT = 20; //
 
     /**

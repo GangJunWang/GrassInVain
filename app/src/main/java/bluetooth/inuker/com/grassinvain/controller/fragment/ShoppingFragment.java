@@ -62,6 +62,19 @@ public class ShoppingFragment extends Fragment implements ShoppingCartListenter,
         return view;
     }
 
+
+    @Override
+    public void onResume() {
+        // 结算成功后回到这里
+        initData();
+        super.onResume();
+    }
+
+    /**
+     * 屏幕获取焦点
+     */
+
+
     private void initData() {
 
         PageBody pageBody = new PageBody();
@@ -127,6 +140,7 @@ public class ShoppingFragment extends Fragment implements ShoppingCartListenter,
                         productSDeatilBody.logoUrl = list.get(i).logoUrl;
                         productSDeatilBody.productId = list.get(i).productId;
                         productSDeatilBody.productFormatPrice = list.get(i).formatPrice;
+                        productSDeatilBody.shopCarId = list.get(i).shopCarId;
                         productSDeatilBodyList.add(productSDeatilBody);
                     }
                 mTotalPrice1 = mTotalPrice;

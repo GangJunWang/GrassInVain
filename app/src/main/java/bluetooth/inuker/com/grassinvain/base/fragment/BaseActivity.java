@@ -13,6 +13,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import org.xutils.x;
+
 /**
  * Created by 1 on 2017/3/22.
  */
@@ -36,6 +38,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        x.view().inject(this);
         Log.d(TAG, "BaseActivity-->onCreate()");
         Bundle bundle = getIntent().getExtras();
         initParms(bundle);

@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import bluetooth.inuker.com.grassinvain.R;
+import bluetooth.inuker.com.grassinvain.common.util.TextUtil;
 import bluetooth.inuker.com.grassinvain.common.widget.MyEditText;
 import bluetooth.inuker.com.grassinvain.controller.activity.personactivity.UserBankActivity;
 import bluetooth.inuker.com.grassinvain.network.body.request.TixianBody;
@@ -72,10 +73,8 @@ public class TixianRecoder extends AppCompatActivity {
         if ("0".equals(uesrmonery)) {
             current_yue.setText("可用余额￥0.00元,");
         } else {
-            String uesrmonery = this.uesrmonery;
-            StringBuilder stringBuilder = new StringBuilder(uesrmonery);
-            stringBuilder.insert(uesrmonery.length() - 2, ".");
-            s = stringBuilder.toString();
+
+            String s = TextUtil.fen2yuan(Integer.parseInt(uesrmonery));
             current_yue.setText("可用余额￥" + s + "元,");
         }
         //全部提现
@@ -83,10 +82,10 @@ public class TixianRecoder extends AppCompatActivity {
         all_tixian.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if ("0".equals(uesrmonery)){
+                if ("0".equals(uesrmonery)) {
                     tixian_number.setText("0");
-                }else {
-                    tixian_number.setText(s.substring(0,s.length()-3));
+                } else {
+                    tixian_number.setText(uesrmonery.substring(0, uesrmonery.length() - 2));
                 }
 
             }
@@ -106,7 +105,8 @@ public class TixianRecoder extends AppCompatActivity {
 
                     TixianBody tixianBody = new TixianBody();
                     tixianBody.bankCardId = bankcard.banksId;
-                    tixianBody.applyCount = tixian_number.getText().toString();
+                    String s = TextUtil.insertString2(tixian_number.getText().toString());
+                    tixianBody.applyCount = s;
                     userModel.getTixian(tixianBody, new Callback<Object>() {
                         @Override
                         public void onSuccess(Object o) {

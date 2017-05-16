@@ -43,18 +43,21 @@ public class AddUserBank extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 if (!"".equals(name.getText().toString()) && !"".equals(number.getText().toString()) && !"".equals(cardtype.getText().toString()) && !"".equals(phone.getText().toString())) {
                     AddbankCardBody addbankCardBody = new AddbankCardBody();
+                    addbankCardBody.cardHolder = name.getText().toString();
+                    addbankCardBody.cardCode = number.getText().toString();
+                    addbankCardBody.bankName = cardtype.getText().toString();
+                    addbankCardBody.reservedPhone = phone.getText().toString();
                     userModel.getAddBankCard(addbankCardBody, new Callback<Object>() {
                         @Override
                         public void onSuccess(Object o) {
                             Toast.makeText(getBaseContext(), "添加成功", Toast.LENGTH_SHORT).show();
                             finish();
                         }
-
                         @Override
                         public void onFailure(int resultCode, String message) {
-
                         }
                     });
                 } else {
